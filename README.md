@@ -13,6 +13,8 @@ conda activate phaunos
 Install necessary packages - R version 4.1.3!
 ```
 mamba install -c conda-forge -c r r-base==4.1.3 jupyterlab r-irkernel
+#also these - these required packages for ggmsa currently fail during R installation...
+mamba install -c conda-forge r-gert r-proj4
 ```
 
 Clone and navigate to the A2TEA WebApp directory
@@ -56,3 +58,8 @@ ssh -N -f -L localhost:8888:localhost:8888 cs03
 ```
 
 If you stuck to the steps you can simply click (e.g. right-click -> open in browser) on one of the last two links given by the remote machine (these include the security token) and you will open jupyter lab on your local machine ;D  
+
+
+Open the shiny_tests.ipnyb and install all required R packages (if first time); load packages; then run both ui and server functions.  
+All other cells can be ignored - these are development tests.
+
