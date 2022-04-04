@@ -72,3 +72,16 @@ runApp(phaunos,
 We need a **second** port forward - so in this case we would need to type in our local machine `ssh -N -f -L localhost:8891:localhost:8891 cs03`.  
   
 If everything worked you will be greeted with no errors but a blue link that you can click and which will open the WebApp on your local machine ;D
+  
+  
+### Finishing work and closing connections
+Remote/Server: It's enough to simply close the jupyter notebook and WebApp  
+Local machine: 
+Check open connections per port (you might need to use sudo)  
+`netstat -lpn |grep :8891` will show you the Process ID of the tunnel connection, e.g.: 406659/ssh   
+Kill connection with `kill 406659`  
+
+
+### Further notes:  
+- If sth. doesn't seem to work with the port, remember that perhaps are people are using them or you yourself might still have connections running!
+
