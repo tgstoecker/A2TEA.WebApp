@@ -61,5 +61,14 @@ If you stuck to the steps you can simply click (e.g. right-click -> open in brow
 
 
 Open the shiny_tests.ipnyb and install all required R packages (if first time); load packages; then run both ui and server functions.  
-All other cells can be ignored - these are development tests.
-
+The last important cell actually runs the App.  
+```
+#Set port to the shiny specific port - NOT the port jupyter uses!
+phaunos <- shinyApp(ui, server)
+runApp(phaunos, 
+       #host = '131.220.109.99', 
+       port=8891)
+```
+We need a **second** port forward - so in this case we would need to type in our local machine `ssh -N -f -L localhost:8891:localhost:8891 cs03`.  
+  
+If everything worked you will be greeted with no errors but a blue link that you can click and which will open the WebApp on your local machine ;D
