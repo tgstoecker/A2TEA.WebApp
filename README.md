@@ -1,4 +1,6 @@
-# A2TEA webApp - development name "phaunos"
+# A2TEA WebApp
+
+<img src="a2tea_hexsticker.png" align="right" alt="" width="120" />
 
 **Current setup instructions:**
   
