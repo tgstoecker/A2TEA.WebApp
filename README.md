@@ -16,7 +16,7 @@ Install necessary packages - R version 4.1.3!
 ```
 mamba install -c conda-forge -c r r-base==4.1.3 jupyterlab r-irkernel
 #also these - these required packages for ggmsa currently fail during R installation...
-mamba install -c conda-forge r-gert r-proj4
+mamba install -c conda-forge r-gert r-proj4 r-devtools
 ```
 
 Clone and navigate to the A2TEA WebApp directory
