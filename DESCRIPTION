@@ -49,3 +49,5 @@ Imports:
     treeio,
     UpSetR,
     XVector
+Remotes:
+    YuLab-SMU/ggmsa
