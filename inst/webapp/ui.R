@@ -1,6 +1,7 @@
 #####
 # Ui
 #####
+
 #set shinycssloaders options
 options(spinner.type=1)
 options(spinner.color='#428bca')
@@ -94,7 +95,7 @@ header <- shinydashboardPlus::dashboardHeader(
 
 sidebar <- shinydashboardPlus::dashboardSidebar(
   # call useShinyjs() in order to use it!
-  useShinyjs(),
+  #useShinyjs(),
   #  actionButton(inputId = "toggle", "Hide/show plot"),
   # as explained in the header creation - necessary CSS to guarantee complete vertical alignment
   tags$style(".left-side, .main-sidebar {padding-top: 60px}"),
@@ -229,7 +230,7 @@ body <- dashboardBody(
   tags$style(".shiny-notification {color: #428bca; background-color: #F39C12; border: 5px solid #428bca}"),
   tags$style(".shiny-notification-warning {color: #5342ca; background-color: #FF4800; border: 5px solid #428bca}"),
   # call useShinyjs() in order to use it!
-  useShinyjs(),
+  #useShinyjs(),
   # tag "tea"
   tags$style(".progress {border-radius: 15px;}"),
   tags$style(".dataTable {color: #428bca}"),
@@ -1183,6 +1184,8 @@ body <- dashboardBody(
 )
 
 ui <- shinydashboardPlus::dashboardPage(
+  #activate Shinyjs
+  useShinyjs(),
   skin = "yellow",
   header = header,
   sidebar = sidebar,
