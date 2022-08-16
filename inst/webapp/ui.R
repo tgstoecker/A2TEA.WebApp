@@ -1,3 +1,8 @@
+#dashboards can introduce problems of not being loaded - when just imported
+library(shiny)
+library(shinydashboard)
+library(shinydashboardPlus)
+
 #####
 # Ui
 #####
