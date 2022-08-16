@@ -50,4 +50,5 @@ Imports:
     UpSetR,
     XVector
 Remotes:
+    rstudio/fontawesome,
     YuLab-SMU/ggmsa
