@@ -16,9 +16,9 @@ A2TEA_App <- function(...) {
 
 #credits to DeanAttali -
 #https://stackoverflow.com/a/49623819
-appDir <- system.file("./inst/", package = "A2TEA.WebApp")
+appDir <- system.file("webapp", package = "A2TEA.WebApp")
   if (appDir == "") {
-    stop("Could not find myapp. Try re-installing `mypackage`.", call. = FALSE)
+    stop("Could not find webapp Try re-installing `A2TEA.WebApp`.", call. = FALSE)
   }
 shiny::runApp(appDir, display.mode = "normal")
   

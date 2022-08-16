@@ -39,7 +39,7 @@
 .onLoad <- function(libname, pkgname) {
   # Create link to logo
   shiny::addResourcePath("A2TEA.WebApp", 
-                         system.file("www", 
+                         system.file("webapp/www", 
                                      package = "A2TEA.WebApp"))
 }
 
