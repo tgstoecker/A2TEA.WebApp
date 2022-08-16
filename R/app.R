@@ -116,6 +116,8 @@ fn_dir <- function(currwd=NULL)
 #################
 #Wrapping the App inside a function
 #################
+#' Start the A2TEA.WebApp
+#' @export
 A2TEA_App <- function(...) {
 
 
