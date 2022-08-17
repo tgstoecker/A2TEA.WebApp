@@ -1,7 +1,3 @@
-#source('R/global.R')
-#source('R/ui.R', local = TRUE)
-#source('R/server.R', local = TRUE)
-
 #################
 #Wrapping the App inside a function
 #################

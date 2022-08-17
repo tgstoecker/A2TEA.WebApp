@@ -10,16 +10,14 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
 Depends:
-    R (>= 4.1.0),
-    DT,
-    shinydashboard,
-    shinydashboardPlus
+    R (>= 4.1.0)
 biocViews:
 Imports: 
     ape,
     Biostrings,
     cowplot,
     dplyr,
+    DT,
     fontawesome,
     ggmsa,
     ggnewscale,
@@ -41,6 +39,8 @@ Imports:
     seqmagick,
     shiny,
     shinycssloaders,
+    shinydashboard,
+    shinydashboardPlus
     shinyjs,
     stringr,
     svglite,
