@@ -47,12 +47,16 @@
 #####
 # defining the A2TEA HYPOTHESES object
 #####
-# class for the expanded_OG - 
-#containing all different types of data we have on it
+
+#' A class for expanded OG's
+#' @name expanded_OG
+#' @export
 setClass("expanded_OG", slots=list(blast_table="tbl_df",
                                    add_OG_analysis="list"))
 
-# class for the hypotheses
+#' A class for the hypotheses
+#' @name hypothesis
+#' @export
 setClass("hypothesis", slots=list(description="character", 
                                   number="character",
                                   expanded_in ="character", 
@@ -60,7 +64,9 @@ setClass("hypothesis", slots=list(description="character",
                                   expanded_OGs="list",
                                   species_tree="phylo"))
 
-#another class for adding OGs analysis
+#' A class for the subelements of the add-OGs analysis
+#' @name add_OG_set
+#' @export
 setClass("add_OG_set",
          slots=list(genes="spec_tbl_df",
                     msa="AAStringSet", 
