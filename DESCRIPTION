@@ -40,7 +40,7 @@ Imports:
     shiny,
     shinycssloaders,
     shinydashboard,
-    shinydashboardPlus
+    shinydashboardPlus,
     shinyjs,
     stringr,
     svglite,
