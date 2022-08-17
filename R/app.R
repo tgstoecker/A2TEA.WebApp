@@ -2,6 +2,7 @@
 #Wrapping the App inside a function
 #################
 #' Start the A2TEA.WebApp
+#' @param 
 #' @export
 A2TEA_App <- function(...) {
 

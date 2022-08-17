@@ -73,11 +73,28 @@ setClass("add_OG_set",
 #Helper functions
 #####
 #hyperlinks
+
+#AmiGO link
+#' Create NCBI link
+#' 
+#' @param val Gene of interest
+#' 
+#' @return Return NCBI link for gene of interest
+#' 
+#' @export
 createNCBILink <- function(val) {
   sprintf('<a href="https://www.ncbi.nlm.nih.gov/search/all/?term=%s" target="_blank" class="btn btn-primary btn-custom-link">Link</a>',val)
 }
 
-createEnsemblPlantsLink <- function(val, ensembl_db) {
+#' Create Ensembl link
+#'
+#' @param val Gene of interest
+#' @param ensembl_db Which ensembl database to use
+#' 
+#' @return Return NCBI link for gene of interest
+#' 
+#' @export
+createEnsemblLink <- function(val, ensembl_db) {
   if (ensembl_db == "Plants") {
     sprintf('<a href="https://plants.ensembl.org/Multi/Search/Results?species=all;idx=;q=%s;site=ensemblunit" target="_blank" class="btn btn-primary btn-custom-link">Link</a>',val)
   } else if (ensembl_db == "Bacteria") {
@@ -94,6 +111,13 @@ createEnsemblPlantsLink <- function(val, ensembl_db) {
 }
 
 #AmiGO link
+#' Create AmiGO link
+#' 
+#' @param go_term Go term of interest
+#' 
+#' @return Return AmiGO link for go_term
+#' 
+#' @export
 createAmiGOLink <- function(go_term) {
   sprintf('<a href="http://amigo.geneontology.org/amigo/term/%s" target="_blank" class="btn btn-primary btn-custom-link">%s</a>', go_term, go_term)
 }
@@ -101,12 +125,23 @@ createAmiGOLink <- function(go_term) {
 #since we might run into a problem if two user login at the very exact time;
 #we can add an additional random string to the end of the session directory
 #https://stackoverflow.com/questions/42734547/generating-random-strings
+
+#' Create a random token
+#' 
+#' @return New random token is created
+#' 
+#' @export
 random_token_generator <- function(n = 5000) {
   a <- do.call(paste0, replicate(5, sample(LETTERS, n, TRUE), FALSE))
   paste0(a, sprintf("%04d", sample(9999, n, TRUE)), sample(LETTERS, n, TRUE))
 }
 
-#FUNCTION - new directory
+#' Create a new tmp directory for plots, etc.
+#' 
+#' @param currwd Current working directory.
+#' @return Creates a new tmp directory that is deleted after exiting session.
+#' 
+#' @export
 fn_dir <- function(currwd=NULL)
 {
   if(is.null(currwd)) stop("Argument 'currwd' is empty.\n")

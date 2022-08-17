@@ -255,7 +255,7 @@ server <- function(input, output, session) {
       dplyr::rename(OG = HOG)
     
     res_deg_df$NCBI <- createNCBILink(res_deg_df$gene)
-    res_deg_df$Ensembl <- createEnsemblPlantsLink(val = res_deg_df$gene, 
+    res_deg_df$Ensembl <- createEnsemblLink(val = res_deg_df$gene, 
                                                   ensembl_db = input$ensembl_db_choice)  
     return(res_deg_df)
   })
