@@ -44,18 +44,6 @@ options(spinner.type=1)
 options(spinner.color='#428bca')
 options(spinner.size=2)
 
-#credit to the GeneTonic devs for this nice add-on for DT log2FC display
-styleColorBar_divergent <- function(data,
-                                    color_pos,
-                                    color_neg) {
-  
-  max_val <- max(abs(data))
-  JS(
-    sprintf(
-      "isNaN(parseFloat(value)) || value < 0 ? 'linear-gradient(90deg, transparent, transparent ' + (50 + value/%s * 50) + '%%, %s ' + (50 + value/%s * 50) + '%%,%s  50%%,transparent 50%%)': 'linear-gradient(90deg, transparent, transparent 50%%, %s 50%%, %s ' + (50 + value/%s * 50) + '%%, transparent ' + (50 + value/%s * 50) + '%%)'",
-      max_val, color_pos, max_val, color_pos, color_neg, color_neg, max_val, max_val))
-}
-
 header <- shinydashboardPlus::dashboardHeader(
   #title = "A2TEA",
   ##adding logo to App

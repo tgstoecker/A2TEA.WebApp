@@ -72,7 +72,27 @@ setClass("add_OG_set",
 #####
 #Helper functions
 #####
-#hyperlinks
+
+#credit to the GeneTonic devs for this nice add-on for DT log2FC display
+#' Adding barplot overlay to DataTables
+#'
+#' @param data Column choice of underlying dataframe which shoud receive barplot overlay.
+#' @param color_pos Color choice for positive values.
+#' @param color_neg Color choice for negative values.
+#'
+#' @return Add styling based on choices.
+#'
+#' @export
+styleColorBar_divergent <- function(data,
+                                    color_pos,
+                                    color_neg) {
+  
+  max_val <- max(abs(data))
+  JS(
+    sprintf(
+      "isNaN(parseFloat(value)) || value < 0 ? 'linear-gradient(90deg, transparent, transparent ' + (50 + value/%s * 50) + '%%, %s ' + (50 + value/%s * 50) + '%%,%s  50%%,transparent 50%%)': 'linear-gradient(90deg, transparent, transparent 50%%, %s 50%%, %s ' + (50 + value/%s * 50) + '%%, transparent ' + (50 + value/%s * 50) + '%%)'",
+      max_val, color_pos, max_val, color_pos, color_neg, color_neg, max_val, max_val))
+}
 
 #AmiGO link
 #' Create NCBI link
