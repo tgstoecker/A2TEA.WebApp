@@ -60,16 +60,26 @@ apt-get install -y \
     --fix-missing
 ```
 
-You can also circumvent any dependency issue by downloading the latest
+You can also circumvent dependency issues by downloading the latest
 release of our [A2TEA Docker
 image](https://hub.docker.com/repository/docker/tgstoecker/a2tea_webapp).  
-To circumvent any potential problems regarding access rights we use
-Singularity to pull and use the image:
+To circumvent most potential problems regarding access rights we use
+Singularity to pull and use the image.  
+Note however, that we require `--writable` to be enabled and therefore
+most likely require either the `--fakeroot` or `--no-home` flag as well.
+Which command works will depend on your Singularity installation -
+whether or not it was priviliged or not.  
+If you have sudo rights and installed Singularity via your systems
+package manager then there should be no problem at all.
 
 ``` r
+#pull the image from dockerhub
 singularity pull a2tea_webapp.sif docker://tgstoecker/a2tea_webapp:latest
+
 #open R console of image in non-persistent but writable mode
 singularity run --writable --fakeroot a2tea_webapp.sif R
+#or
+singularity run --writable --no-home a2tea_webapp.sif R
 ```
 
 ## Quick start

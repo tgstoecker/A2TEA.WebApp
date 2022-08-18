@@ -4,12 +4,12 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Tyll", "Stöcker", , "tyll.stoecker@uni-bonn.de", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-7184-9472"))
-    person("Carolin", "Uebermuth-Feldhaus", , "", role = c("aut"),
-           comment = c(ORCID = ""))
-    person("FLorian", "Boecker", , "", role = c("aut",),
+    person("Carolin", "Uebermuth-Feldhaus", , "s6cauebe@uni-bonn.de", role = c("aut"),
+           comment = c(ORCID = "ask Caro"))
+    person("FLorian", "Boecker", , "fboecker@uni-bonn.de", role = c("aut",),
            comment = c(ORCID = "0000-0002-0732-6914"))
-    person("Heiko", "Schoof", , "0000-0002-1527-3752", role = c("aut"),
-           comment = c(ORCID = ""))
+    person("Heiko", "Schoof", , "schoof@uni-bonn.de", role = c("aut"),
+           comment = c(ORCID = "0000-0002-1527-3752"))
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Encoding: UTF-8
