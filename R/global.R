@@ -1,40 +1,29 @@
 #' @import shiny
-#' @import dplyr
 #' @import ggtree
-#' @import ape
 #' @import readr
 #' @import stringr
-#' @import tidyr
-#' @import purrr
-#' @import treeio
 #' @import ggtreeExtra
 #' @import ggstar
 #' @import ggnewscale
-#' @import ggplot2
 #' @import ggstance
 #' @import Biostrings
 #' @import ggmsa
 #' @import seqmagick
 #' @import XVector
 #' @import gtable
-#' @import grid
 #' @import DT
 #' @import cowplot
-#' @import ggplotify
+#' @importFrom ggplotify as.ggplot
 #' @import shinydashboard
 #' @import shinydashboardPlus
 #' @import fontawesome
-#' @import UpSetR
-#' @import ggvenn
+#' @importFrom UpSetR upset
+#' @importFrom ggvenn ggvenn
 #' @import shinyjs
 #' @import Polychrome
 #' @import shinycssloaders
 #' @import svglite
 #' @import topGO
-#' @import Rgraphviz
-#' @import scales
-#' @import methods
-
 
 .onLoad <- function(libname, pkgname) {
   # Create link to logo

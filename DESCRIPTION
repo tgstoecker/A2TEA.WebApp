@@ -3,7 +3,13 @@ Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
     person("Tyll", "Stöcker", , "tyll.stoecker@uni-bonn.de", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           comment = c(ORCID = "0000-0001-7184-9472"))
+    person("Carolin", "Uebermuth-Feldhaus", , "", role = c("aut"),
+           comment = c(ORCID = ""))
+    person("FLorian", "Boecker", , "", role = c("aut",),
+           comment = c(ORCID = "0000-0002-0732-6914"))
+    person("Heiko", "Schoof", , "0000-0002-1527-3752", role = c("aut"),
+           comment = c(ORCID = ""))
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -13,29 +19,22 @@ Depends:
     R (>= 4.1.0)
 biocViews:
 Imports: 
-    ape,
     Biostrings,
     cowplot,
-    dplyr,
     DT,
     fontawesome,
     ggmsa,
     ggnewscale,
-    ggplot2,
     ggplotify,
     ggstance,
     ggstar,
     ggtree,
     ggtreeExtra,
     ggvenn,
-    grid,
     gtable,
-    methods,
     Polychrome,
-    purrr,
     readr,
     Rgraphviz,
-    scales,
     seqmagick,
     shiny,
     shinycssloaders,
@@ -44,9 +43,7 @@ Imports:
     shinyjs,
     stringr,
     svglite,
-    tidyr,
     topGO,
-    treeio,
     UpSetR,
     XVector
 Remotes:

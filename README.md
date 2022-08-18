@@ -6,10 +6,13 @@
 # A2TEA.WebApp
 
 <!-- badges: start -->
+
 [![R-CMD-check](https://github.com/tgstoecker/A2TEA.WebApp/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/tgstoecker/A2TEA.WebApp/actions/workflows/R-CMD-check.yaml)
 [![](https://img.shields.io/github/last-commit/tgstoecker/A2TEA.WebApp.svg)](https://github.com/tgstoecker/A2TEA.WebApp/commits/master)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![Codecov.io coverage
+status](https://codecov.io/github/tgstoecker/A2TEA.WebApp/coverage.svg?branch=master)](https://codecov.io/github/tgstoecker/A2TEA.WebApp)
 <!-- badges: end -->
 
 The goal of the A2TEA.WebApp is to allow exploration, highlighting, and
@@ -40,11 +43,34 @@ Note that some system dependencies might have to be installed:
 
 ``` r
 apt-get update
-apt-get update
-apt-get install -y libproj-dev xdg-utils --fix-missing
+apt-get upgrade
+apt-get install -y \
+    libxml2-dev \
+    libcairo2-dev \
+    libgit2-dev \
+    default-libmysqlclient-dev \
+    libpq-dev \
+    libsasl2-dev \
+    libsqlite3-dev \
+    libssh2-1-dev \
+    libxtst6 \
+    libcurl4-openssl-dev \
+    unixodbc-dev \
+    libproj-dev xdg-utils \
+    --fix-missing
 ```
 
-You can also circumvent any dependency issue by downloading our
+You can also circumvent any dependency issue by downloading the latest
+release of our [A2TEA Docker
+image](https://hub.docker.com/repository/docker/tgstoecker/a2tea_webapp).  
+To circumvent any potential problems regarding access rights we use
+Singularity to pull and use the image:
+
+``` r
+singularity pull a2tea_webapp.sif docker://tgstoecker/a2tea_webapp:latest
+#open R console of image in non-persistent but writable mode
+singularity run --writable --fakeroot a2tea_webapp.sif R
+```
 
 ## Quick start
 
@@ -52,8 +78,9 @@ To start the Shiny Application simply load the library, call the
 A2TEA_App function and upload a A2TEA.RData file:
 
 ``` r
-library("A2TEA.WebApp")
+library(A2TEA.WebApp)
 A2TEA_App()
+#upload an A2TEA.RData file
 ```
 
 ## Usage overview
