@@ -1,0 +1,21 @@
+---
+title: "A2TEA.WebApp manual"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{A2TEA_WebApp_manual}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+2+2
+```
+
+Comment blablabla

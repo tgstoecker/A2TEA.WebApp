@@ -53,3 +53,7 @@ Remotes:
     rstudio/fontawesome,
     YuLab-SMU/ggmsa
 URL: https://tgstoecker.github.io/A2TEA.WebApp/
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
