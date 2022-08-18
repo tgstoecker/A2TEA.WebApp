@@ -34,6 +34,7 @@ Imports:
     ggtreeExtra,
     ggvenn,
     gtable,
+    methods,
     Polychrome,
     readr,
     Rgraphviz,
