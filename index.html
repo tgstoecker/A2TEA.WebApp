@@ -65,17 +65,41 @@
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"tgstoecker/A2TEA.WebApp"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>Note that some system dependencies might have to be installed:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>apt<span class="sc">-</span>get update</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>apt<span class="sc">-</span>get update</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>apt<span class="sc">-</span>get install <span class="sc">-</span>y libproj<span class="sc">-</span>dev xdg<span class="sc">-</span>utils <span class="sc">--</span>fix<span class="sc">-</span>missing</span></code></pre></div>
-<p>You can also circumvent any dependency issue by downloading our</p>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>apt<span class="sc">-</span>get upgrade</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>apt<span class="sc">-</span>get install <span class="sc">-</span>y \</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    libxml2<span class="sc">-</span>dev \</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    libcairo2<span class="sc">-</span>dev \</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    libgit2<span class="sc">-</span>dev \</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    default<span class="sc">-</span>libmysqlclient<span class="sc">-</span>dev \</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    libpq<span class="sc">-</span>dev \</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    libsasl2<span class="sc">-</span>dev \</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    libsqlite3<span class="sc">-</span>dev \</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    libssh2<span class="dv">-1</span><span class="sc">-</span>dev \</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    libxtst6 \</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    libcurl4<span class="sc">-</span>openssl<span class="sc">-</span>dev \</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    unixodbc<span class="sc">-</span>dev \</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    libproj<span class="sc">-</span>dev xdg<span class="sc">-</span>utils \</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="sc">--</span>fix<span class="sc">-</span>missing</span></code></pre></div>
+<p>You can also circumvent dependency issues by downloading the latest release of our <a href="https://hub.docker.com/repository/docker/tgstoecker/a2tea_webapp" class="external-link">A2TEA Docker image</a>.<br>
+To circumvent most potential problems regarding access rights we use Singularity to pull and use the image.<br>
+Note however, that we require <code>--writable</code> to be enabled and therefore most likely require either the <code>--fakeroot</code> or <code>--no-home</code> flag as well. Which command works will depend on your Singularity installation - whether or not it was priviliged or not.<br>
+If you have sudo rights and installed Singularity via your systems package manager then there should be no problem at all.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#pull the image from dockerhub</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>singularity pull a2tea_webapp.sif docker<span class="sc">:</span><span class="er">//</span>tgstoecker<span class="sc">/</span>a2tea_webapp<span class="sc">:</span>latest</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#open R console of image in non-persistent but writable mode</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>singularity run <span class="sc">--</span>writable <span class="sc">--</span>fakeroot a2tea_webapp.sif R</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#or</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>singularity run <span class="sc">--</span>writable <span class="sc">--</span>no<span class="sc">-</span>home a2tea_webapp.sif R</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="quick-start">Quick start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h2>
 <p>To start the Shiny Application simply load the library, call the A2TEA_App function and upload a A2TEA.RData file:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://tgstoecker.github.io/A2TEA.WebApp/" class="external-link">"A2TEA.WebApp"</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/A2TEA_App.html">A2TEA_App</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tgstoecker.github.io/A2TEA.WebApp/" class="external-link">A2TEA.WebApp</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/A2TEA_App.html">A2TEA_App</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#upload an A2TEA.RData file</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="usage-overview">Usage overview<a class="anchor" aria-label="anchor" href="#usage-overview"></a>
@@ -113,7 +137,10 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Tyll Stöcker <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/YOUR-ORCID-ID" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Tyll Stöcker <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-7184-9472" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Carolin Uebermuth-Feldhaus <br><small class="roles"> Author </small> <a href="https://orcid.org/ask%20Caro" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>FLorian Boecker <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-0732-6914" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Heiko Schoof <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-1527-3752" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
@@ -123,6 +150,7 @@
 <li><a href="https://github.com/tgstoecker/A2TEA.WebApp/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/tgstoecker/A2TEA.WebApp/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://github.com/tgstoecker/A2TEA.WebApp/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/tgstoecker/A2TEA.WebApp.svg"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
+<li><a href="https://codecov.io/github/tgstoecker/A2TEA.WebApp" class="external-link"><img src="https://codecov.io/github/tgstoecker/A2TEA.WebApp/coverage.svg?branch=master" alt="Codecov.io coverage status"></a></li>
 </ul>
 </div>
 
@@ -132,7 +160,7 @@
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Tyll Stöcker.</p>
+<p>Developed by Tyll Stöcker, Carolin Uebermuth-Feldhaus, FLorian Boecker, Heiko Schoof.</p>
 </div>
 
 <div class="pkgdown-footer-right">
