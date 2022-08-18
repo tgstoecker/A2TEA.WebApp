@@ -25,5 +25,11 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
-
+          
       - uses: r-lib/actions/check-r-package@v2
+
+      - name: Test coverage
+        run: |
+          install.packages("covr")
+          covr::codecov()
+        shell: Rscript {0}

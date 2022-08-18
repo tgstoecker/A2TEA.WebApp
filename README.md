@@ -8,6 +8,11 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/tgstoecker/A2TEA.WebApp/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/tgstoecker/A2TEA.WebApp/actions/workflows/R-CMD-check.yaml)
+[![](https://img.shields.io/github/last-commit/tgstoecker/A2TEA.WebApp.svg)](https://github.com/tgstoecker/A2TEA.WebApp/commits/master)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![Codecov.io coverage
+status](https://codecov.io/github/tgstoecker/A2TEA.WebApp/coverage.svg?branch=master)](https://codecov.io/github/tgstoecker/A2TEA.WebApp)
 <!-- badges: end -->
 
 The goal of the A2TEA.WebApp is to allow exploration, highlighting, and
