@@ -3,7 +3,17 @@
 \docType{class}
 \name{add_OG_set}
 \alias{add_OG_set}
-\title{A class for the subelements of the add-OGs analysis}
+\title{add_OG_set Class}
 \description{
 A class for the subelements of the add-OGs analysis
 }
+\section{Slots}{
+
+\describe{
+\item{\code{genes}}{spec_tbl_df. DF of genes for current set}
+
+\item{\code{msa}}{AAStringSet. MSA for current set}
+
+\item{\code{tree}}{phylo. Phylogenetic tree of current set}
+}}
+

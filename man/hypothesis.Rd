@@ -3,7 +3,23 @@
 \docType{class}
 \name{hypothesis}
 \alias{hypothesis}
-\title{A class for the hypotheses}
+\title{hypothesis Class}
 \description{
 A class for the hypotheses
 }
+\section{Slots}{
+
+\describe{
+\item{\code{description}}{character. name given to hypothesis}
+
+\item{\code{number}}{integer. index number of hypothesis}
+
+\item{\code{expanded_in}}{character. species investigated for expansion}
+
+\item{\code{compared_to}}{character. species that are used for comparison}
+
+\item{\code{expanded_OGs}}{list. lists all expanded OGs for current hypothesis}
+
+\item{\code{species_tree}}{phylo. species tree for current hypothesis}
+}}
+

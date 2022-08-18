@@ -6,6 +6,9 @@
 \usage{
 A2TEA_App(...)
 }
+\arguments{
+\item{...}{just leave empty}
+}
 \description{
 Start the A2TEA.WebApp
 }

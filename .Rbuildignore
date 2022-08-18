@@ -3,3 +3,8 @@
 ^untracked_stuff$
 ^A2TEA\.WebApp\.Rproj$
 ^License\.md$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$
+^README.Rmd

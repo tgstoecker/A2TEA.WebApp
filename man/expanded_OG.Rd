@@ -3,7 +3,15 @@
 \docType{class}
 \name{expanded_OG}
 \alias{expanded_OG}
-\title{A class for expanded OG's}
+\title{expanded_OG Class}
 \description{
 A class for expanded OG's
 }
+\section{Slots}{
+
+\describe{
+\item{\code{blast_table}}{df. gene level; blast hits of OG and all closest OGs}
+
+\item{\code{add_OG_analysis}}{list. lists subclass add_OG_set elements}
+}}
+

@@ -48,26 +48,49 @@
 # defining the A2TEA HYPOTHESES object
 #####
 
+#' expanded_OG Class
+#' 
 #' A class for expanded OG's
+#' 
 #' @name expanded_OG
-#' @export
-setClass("expanded_OG", slots=list(blast_table="tbl_df",
+#' @slot blast_table df. gene level; blast hits of OG and all closest OGs
+#' @slot add_OG_analysis list. lists subclass add_OG_set elements
+#' 
+#' @export expanded_OG
+expanded_OG <- setClass("expanded_OG", slots=list(blast_table="tbl_df",
                                    add_OG_analysis="list"))
 
+#' hypothesis Class
+#' 
 #' A class for the hypotheses
+#' 
 #' @name hypothesis
-#' @export
-setClass("hypothesis", slots=list(description="character", 
+#' @slot description character. name given to hypothesis
+#' @slot number integer. index number of hypothesis
+#' @slot expanded_in character. species investigated for expansion
+#' @slot compared_to character. species that are used for comparison
+#' @slot expanded_OGs list. lists all expanded OGs for current hypothesis
+#' @slot species_tree phylo. species tree for current hypothesis
+#' 
+#' @export hypothesis
+hypothesis <- setClass("hypothesis", slots=list(description="character", 
                                   number="character",
                                   expanded_in ="character", 
                                   compared_to="character", 
                                   expanded_OGs="list",
                                   species_tree="phylo"))
 
+#' add_OG_set Class
+#' 
 #' A class for the subelements of the add-OGs analysis
+#' 
 #' @name add_OG_set
-#' @export
-setClass("add_OG_set",
+#' @slot genes spec_tbl_df. DF of genes for current set
+#' @slot msa AAStringSet. MSA for current set
+#' @slot tree phylo. Phylogenetic tree of current set
+#' 
+#' @export add_OG_set
+add_OG_set <- setClass("add_OG_set",
          slots=list(genes="spec_tbl_df",
                     msa="AAStringSet", 
                     tree="phylo"
@@ -154,6 +177,7 @@ createAmiGOLink <- function(go_term) {
 
 #' Create a random token
 #' 
+#' @param n sample size
 #' @return New random token is created
 #' 
 #' @export

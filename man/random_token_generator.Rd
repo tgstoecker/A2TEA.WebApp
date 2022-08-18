@@ -6,6 +6,9 @@
 \usage{
 random_token_generator(n = 5000)
 }
+\arguments{
+\item{n}{sample size}
+}
 \value{
 New random token is created
 }
