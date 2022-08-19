@@ -36,12 +36,14 @@ either remotes or devtools, e.g.:
 
 ``` r
 library(remotes)
-remotes::install_github("tgstoecker/A2TEA.WebApp", dependencies = TRUE, build_vignettes = TRUE)
+remotes::install_github("tgstoecker/A2TEA.WebApp", 
+                        dependencies = TRUE, 
+                        build_vignettes = TRUE)
 ```
 
 Note that some system dependencies might have to be installed:
 
-``` r
+``` bash
 apt-get update
 apt-get upgrade
 apt-get install -y \
@@ -72,7 +74,7 @@ whether or not it was priviliged or not.
 If you have sudo rights and installed Singularity via your systems
 package manager then there should be no problem at all.
 
-``` r
+``` bash
 #pull the image from dockerhub
 singularity pull a2tea_webapp.sif docker://tgstoecker/a2tea_webapp:latest
 

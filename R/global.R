@@ -26,7 +26,7 @@
 #' @import topGO
 
 .onLoad <- function(libname, pkgname) {
-  # Create link to logo
+  # Create link to logo & test data
   shiny::addResourcePath("A2TEA.WebApp", 
                          system.file("webapp/www", 
                                      package = "A2TEA.WebApp"))

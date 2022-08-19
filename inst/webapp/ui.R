@@ -135,6 +135,13 @@ sidebar <- shinydashboardPlus::dashboardSidebar(
   tags$style(".sidebar-collapse .hypothesis_select {display:none;}"),
   tags$style(".sidebar-collapse .data_upload {display:none;}"),
   # Add input of A2TE.RData object
+  br(),
+  # demo dataset
+  tags$div(id = "demo_upload", class="data_upload",
+           actionButton(inputId = "demo_A2TEA_choice",
+                        label = "Try a demo A2TEA.RData file")
+  ),
+  #user upload
   tags$div(id = "data_upload", class="data_upload",
            fileInput(inputId = "A2TEA", 
                      label = "Upload A2TEA.RData file:",

@@ -56,47 +56,65 @@ server <- function(input, output, session) {
   # change maximum file upload size = default 100Mb
   options(shiny.maxRequestSize=1000*1024^2)
   
+  
+  #"listen" for either demo or data being chosen
+  demo_or_upload <- reactive({
+    paste(input$demo_A2TEA_choice, input$A2TEA)
+  })
+  
+  get_file_or_default <- eventReactive(demo_or_upload(), {
+    
+    if (isTruthy(input$demo_A2TEA_choice)) {
+      df <- data.frame(datapath="www/test.RData")
+      df$datapath <- as.character(df$datapath)
+      df
+    } else {
+      input$A2TEA
+    }
+  })
+  
   ## event reactive expression for loading the data once uploaded by the user
+  ##or demo data
   # hypotheses.tsv (simple df with)
-  hypotheses_tsv <- eventReactive(input$A2TEA, {
+  hypotheses_tsv <- eventReactive(get_file_or_default(), {
     t = new.env()
-    load(input$A2TEA$datapath, envir = t)
+    load(get_file_or_default()$datapath, envir = t)
     get("hypotheses", envir=t)
   })
   # core A2TEA object
-  HYPOTHESES.a2tea <- eventReactive(input$A2TEA, {
+  HYPOTHESES.a2tea <- eventReactive(get_file_or_default(), {
     t = new.env()
-    load(input$A2TEA$datapath, envir = t)
+    load(get_file_or_default()$datapath, envir = t)
     get("HYPOTHESES.a2tea", envir=t)
   })
   # Gene level diff. exp. table
-  HOG_DE.a2tea <- eventReactive(input$A2TEA, {
+  HOG_DE.a2tea <- eventReactive(get_file_or_default(), {
     t = new.env()
-    load(input$A2TEA$datapath, envir = t)
+    load(get_file_or_default()$datapath, envir = t)
     get("HOG_DE.a2tea", envir=t)
   })
   # List of HOGs
-  HOG_level_list <- eventReactive(input$A2TEA, {
+  HOG_level_list <- eventReactive(get_file_or_default(), {
     t = new.env()
-    load(input$A2TEA$datapath, envir = t)
+    load(get_file_or_default()$datapath, envir = t)
     get("HOG_level_list", envir=t)
   })
   # List of HOGs
-  SFA <- eventReactive(input$A2TEA, {
+  SFA <- eventReactive(get_file_or_default(), {
     t = new.env()
-    load(input$A2TEA$datapath, envir = t)
+    load(get_file_or_default()$datapath, envir = t)
     get("SFA", envir=t)
-  }) 
+  })
   #all species tree
-  all_speciesTree <- eventReactive(input$A2TEA, {
+  all_speciesTree <- eventReactive(get_file_or_default(), {
     t = new.env()
-    load(input$A2TEA$datapath, envir = t)
+    load(get_file_or_default()$datapath, envir = t)
     get("all_speciesTree", envir=t)
   })
   #pep fasta sequences
-  A2TEA.fa.seqs <- eventReactive(input$A2TEA, {
+  A2TEA.fa.seqs <- eventReactive(get_file_or_default(), {
     t = new.env()
-    load(input$A2TEA$datapath, envir = t)
+    load(get_file_or_default()$datapath, envir = t)
     get("A2TEA.fa.seqs", envir=t)
   })
   
@@ -116,7 +134,7 @@ server <- function(input, output, session) {
   #we define all cases in which we want or animation of "in-sliding" panels to occur
   #on read-in of data, changes between different sidebar menu options and when changing between hypotheses
   animation_req <- reactive({
-    paste(input$A2TEA, input$a2tea_sidebar_menu, input$select_Hypothesis_server)
+    paste(input$A2TEA, input$demo_A2TEA_choice, input$a2tea_sidebar_menu, input$select_Hypothesis_server)
   })
   
   ## observe upload of data and only then show boxes in which the plots are displayed
@@ -126,19 +144,23 @@ server <- function(input, output, session) {
   # this way on the next change the view is empty and the user sees the animation without prev. results being visible for  short period of time ;D
   # General page
   observeEvent(animation_req(), {
-    req(input$A2TEA)
+    req(
+      isTruthy(input$A2TEA) || isTruthy(input$demo_A2TEA_choice)
+    )
     shinyjs::hideElement("id_speciesPlot_outer", anim = FALSE)
     shinyjs::hideElement("id_hypothesis_conservation_outer", anim = FALSE)
     shinyjs::hideElement("id_diff_exp_table_outer", anim = FALSE)
     shinyjs::hideElement("id_func_anno_table_outer", anim = FALSE)
     shinyjs::hideElement("id_hypothesis_infos_general", anim = FALSE)
+    shinyjs::hideElement("id_hypothesis_details_outer", anim = FALSE)
     if (input$a2tea_sidebar_menu == "general") {
       delay(ms = 100,
             c(shinyjs::showElement("id_speciesPlot_outer", anim = TRUE, animType = "slide", time = 1),
               shinyjs::showElement("id_hypothesis_conservation_outer", anim = TRUE, animType = "slide", time = 1),
               shinyjs::showElement("id_diff_exp_table_outer", anim = TRUE, animType = "slide", time = 1),
               shinyjs::showElement("id_func_anno_table_outer", anim = TRUE, animType = "slide", time = 1),
-              shinyjs::showElement("id_hypothesis_infos_general", anim = TRUE, animType = "slide", time = 1)
+              shinyjs::showElement("id_hypothesis_infos_general", anim = TRUE, animType = "slide", time = 1),
+              shinyjs::showElement("id_hypothesis_details_outer", anim = TRUE, animType = "slide", time = 1)
             )
       )
     }
@@ -634,7 +656,9 @@ server <- function(input, output, session) {
   })
   
   output$general_ui_infoboxes <- renderUI({
-    req(input$A2TEA)
+    req(
+      isTruthy(input$A2TEA) || isTruthy(input$demo_A2TEA_choice)
+    )
 
     fluidRow(
       column(width = 6,
@@ -644,16 +668,20 @@ server <- function(input, output, session) {
       ),
       column(width=6,        
              #hypotheses table
-             box(
-               style = "height: 600px; overflow-y: auto; overflow-x: auto",
-               background ="yellow",
-               gradient = TRUE,
-               width = NULL,
-               collapsed = TRUE,
-               collapsible = TRUE,
-               title = "Hypothesis details:",
-               shinycssloaders::withSpinner(
-                 DTOutput("hypotheses_DT_table")
+             shinyjs::hidden(
+               div(id = "id_hypothesis_details_outer",
+                 box(
+                   style = "height: 600px; overflow-y: auto; overflow-x: auto",
+                   background ="yellow",
+                   gradient = TRUE,
+                   width = NULL,
+                   collapsed = TRUE,
+                   collapsible = TRUE,
+                   title = "Hypothesis details:",
+                   shinycssloaders::withSpinner(
+                     DTOutput("hypotheses_DT_table")
+                   )
+                 )
                )
              )
       )
@@ -2640,7 +2668,11 @@ server <- function(input, output, session) {
       DT::selectCells(blast_table_proxy, input$ortho_tree_table_cell_selected[!input$ortho_tree_table_cell_selected %in% sel_func_anno_genes])
       #go term enrichment tab
       DT::selectRows(sig_OGs_for_term_df_proxy, input$sig_OGs_for_term_df_rows_selected[!input$sig_OGs_for_term_df_rows_selected %in% sel_go_og_level_ogs])
-      DT::selectRows(sig_OGs_for_term_df_proxy, input$sig_OGs_for_term_df_rows_selected[!input$sig_OGs_for_term_df_rows_selected %in% sel_go_gene_level_genes])
+      if (!is.null(sel_go_gene_level_genes)) {
+        DT::selectRows(sig_OGs_for_term_df_proxy, input$sig_OGs_for_term_df_rows_selected[!input$sig_OGs_for_term_df_rows_selected %in% sel_go_gene_level_genes])
+      } else {
+        DT::selectRows(sig_OGs_for_term_df_proxy, input$sig_OGs_for_term_df_rows_selected[!input$sig_OGs_for_term_df_rows_selected %in% sel_go_og_level_ogs])
+      }
     }
     else if (input$a2tea_sidebar_menu == "bookmarks") {
       showNotification("No bookmarking on the bookmarking tab ;D", type = "warning", duration = 4)
@@ -3088,6 +3120,7 @@ server <- function(input, output, session) {
   })
   
   #the download button
+  
   output$button_bookmarks_RData_export <- downloadHandler(
     filename = function() {
       "subset_A2TEA_finished.RData"
@@ -3116,6 +3149,7 @@ server <- function(input, output, session) {
            compression_level = 9)
     }
   )
+  
   
   ####################
   #actions to perform on end of session

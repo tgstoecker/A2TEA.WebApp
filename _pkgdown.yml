@@ -1,16 +1,17 @@
 url: ~
 template:
   bootstrap: 5
-  bootswatch: solar
-  theme: github-dark
+#  bootswatch: solar
+#  theme: github-dark
   bslib:
+    primary: "#0054AD"
     border-radius: 0.5rem
     btn-border-radius: 0.25rem
-    code-color: bg-primary
-    code-bg: bg-light
-    base_font: {google: "Roboto"}
-    heading_font: {google: "Roboto Slab"}
-    code_font: {google: "JetBrains Mono"}
+    #code-color: bg-primary
+    #code-bg: bg-light
+    #base_font: {google: "Roboto"}
+    #heading_font: {google: "Roboto Slab"}
+    #code_font: {google: "JetBrains Mono"}
 
 navbar:
   bg: bg-primary
