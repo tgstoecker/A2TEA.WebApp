@@ -549,6 +549,7 @@ server <- function(input, output, session) {
         
         p <- as.ggplot(
           upset(fromList(genotypeList()), 
+                nsets = length(genotypeList),
                 order.by = "freq",
                 empty.intersections = "on",
                 point.size = 3.5, 
