@@ -1,5 +1,5 @@
 Package: A2TEA.WebApp
-Title: What the Package Does (One Line, Title Case)
+Title: A2TEA.WebApp
 Version: 0.0.0.9000
 Authors@R: 
   c(
@@ -12,7 +12,7 @@ Authors@R:
     person("Heiko", "Schoof", , "schoof@uni-bonn.de", role = c("aut"),
            comment = c(ORCID = "0000-0002-1527-3752"))
     )
-Description: What the package does (one paragraph).
+Description: Shiny App facilitating identification of candidate genes for stress adaptation based on comparative genomics and transcriptomics. Combines differential gene expression with gene family expansion as indicator for the evolution of adaptive traits.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
