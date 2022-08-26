@@ -28,6 +28,6 @@ sed -i 's/A2TEA.WebApp\///' ui.R
 sed -i 's/www\/test.RData/test\.RData/' server.R
 
 #Step 3 - start R (environment with all libs of the App installed!) and upload
-#Rscript -e 'library(shiny)
-#            options(repos = BiocManager::repositories())
-#            rsconnect::deployApp(appName="A2TEA-WebApp")'
+Rscript -e 'library(shiny)
+            options(repos = BiocManager::repositories())
+            rsconnect::deployApp(appName="A2TEA-WebApp")'

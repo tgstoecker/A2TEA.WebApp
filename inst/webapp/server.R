@@ -64,13 +64,18 @@ server <- function(input, output, session) {
   
   get_file_or_default <- eventReactive(demo_or_upload(), {
     
-    if (isTruthy(input$demo_A2TEA_choice)) {
-      df <- data.frame(datapath="www/test.RData")
-      df$datapath <- as.character(df$datapath)
-      df
-    } else {
+    if (isTruthy(input$A2TEA)) {
+      #hide test data field - not needed + currently weird reactivity 
+      #(isn't loaded after actual upload data)
+      shinyjs::hideElement(id = "demo_upload", anim = TRUE, animType = "slide", time = 1)
       input$A2TEA
-    }
+      } else {
+        df <- data.frame(datapath="www/test.RData")
+        df$datapath <- as.character(df$datapath)
+        df
+        
+      }
+    
   })
   
   ## event reactive expression for loading the data once uploaded by the user
