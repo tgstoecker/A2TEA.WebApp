@@ -1,6 +1,5 @@
 
-<img src="inst/webapp/www/a2tea_hexsticker.png" align="right" alt="" width="120" />
-
+<!-- <img src="inst/webapp/www/a2tea_hexsticker.png" align="right" width="120"/> -->
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # A2TEA.WebApp
@@ -11,6 +10,7 @@
 [![](https://img.shields.io/github/last-commit/tgstoecker/A2TEA.WebApp.svg)](https://github.com/tgstoecker/A2TEA.WebApp/commits/master)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+
 <!-- badges: end -->
 
 A2TEA is a software workflow facilitating identification of candidate
@@ -129,6 +129,33 @@ version of the documentation of `A2TEA.WebApp` at the project website
 which includes a usage guide detailing all of the App’s functionality.
 
 <br>
+
+## :ballot_box_with_check: Included test data
+
+The WebApp comes with a test dataset and can be loaded via clicking the
+“Try a demo A2TEA.RData file” at the top of the interface. This result
+is also computed by the
+[A2TEA.Workflow](https://github.com/tgstoecker/A2TEA.Workflow) for its
+usage test. The workflow is set up to run a three species analysis with
+*Hordeum vulgare*, *Zea mays* & *Oryza sativa japonica* and their
+reaction patterns to drought stress.  
+Peptide fastas are reduced to 2000 proteins; sequencing reads are
+subsampled to 2M reads.  
+The fasta/annotation files and sequencing reads are hosted - here.  
+Fasta & annotation files are all either downloaded from ensemblPlants
+and still possess their original name or in the case of the functional
+annotations were computed using
+[AHRD](https://github.com/groupschoof/AHRD).  
+NCBI SRA accession IDs of sequencing reads: - Hordeum vulgare:
+SRR6782243, SRR6782247, SRR6782257, SRR6782249, SRR6782250, SRR6782254 -
+Zea mays: SRR2043219, SRR2043217, SRR2043190, SRR2043220, SRR2043226,
+SRR2043227 - Oryza sativa japonica: SRR5134063, SRR5134064, SRR5134065,
+SRR5134066
+
+These correspond to the following studies relating to drought stress:  
+- Hordeum vulgare: <https://doi.org/10.1186/s12864-019-5634-0>  
+- Zea mays: <https://doi.org/10.1104/pp.16.01045>  
+- Oryza sativa japonica: <https://doi.org/10.3389/fpls.2017.00580>
 
 ## Development
 

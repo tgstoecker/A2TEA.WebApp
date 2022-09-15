@@ -29,14 +29,19 @@ navbar:
       text: Articles
       menu:
       - text: |
-          The A2TEA.WebApp User's Guide
-        href: vignettes/A2TEA_WebApp_manual.Rmd
-    news:
-      text: Changelog
-      href: news/index.html
+         A2TEA.WebApp Manual
+        href: articles/A2TEA_WebApp_manual.html
+      - text: |
+         Classes & Data Structures
+        href: articles/classes_and_datastructures.html
     github:
       icon: fab fa-github fa-lg
       href: https://github.com/tgstoecker/A2TEA.WebApp
+
+news:
+  releases:
+    - text: "Version 1.0.0"
+      href: articles/a2tea_webapp_release-1-0-0.html
   
 home:
   sidebar:
