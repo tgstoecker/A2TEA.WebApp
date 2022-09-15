@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Shiny App facilitating identification of candidate genes for stress adaptation based on comparative genomics and transcriptomics. Combines differential gene expression with gene family expansion as indicator for the evolution of adaptive traits.">
-<title>A2TEA.WebApp • A2TEA.WebApp</title>
+<title>Explore, filter, and visualize gene family expansions and differential expression to identify candidate genes for stress adaptation. • A2TEA.WebApp</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <link href="deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="A2TEA.WebApp">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Explore, filter, and visualize gene family expansions and differential expression to identify candidate genes for stress adaptation.">
 <meta property="og:description" content="Shiny App facilitating identification of candidate genes for stress adaptation based on comparative genomics and transcriptomics. Combines differential gene expression with gene family expansion as indicator for the evolution of adaptive traits.">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="index.html">A2TEA.WebApp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,12 +48,20 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="vignettes/A2TEA_WebApp_manual.Rmd">The A2TEA.WebApp User's Guide
+    <a class="dropdown-item" href="articles/A2TEA_WebApp_manual.html">A2TEA.WebApp Manual
+</a>
+    <a class="dropdown-item" href="articles/classes_and_datastructures.html">Classes &amp; Data Structures
 </a>
   </div>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="news/index.html">Changelog</a>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-news">News</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-news">
+    <h6 class="dropdown-header" data-toc-skip>Releases</h6>
+    <a class="dropdown-item" href="articles/a2tea_webapp_release-1-0-0.html">Version 1.0.0</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="news/index.html">Changelog</a>
+  </div>
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
@@ -74,14 +82,13 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><p><img src="inst/webapp/www/a2tea_hexsticker.png" align="right" alt="" width="120"></p>
-<!-- README.md is generated from README.Rmd. Please edit that file --><div class="section level1">
+  <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header">
 <img src="logo.png" class="logo" alt=""><h1 id="a2teawebapp">A2TEA.WebApp<a class="anchor" aria-label="anchor" href="#a2teawebapp"></a>
 </h1>
 </div>
 <!-- badges: start -->
-<p>A2TEA is a software workflow facilitating identification of candidate genes for stress adaptation based on comparative genomics and transcriptomics. It combines differential gene expression with gene family expansion as an indicator for the evolution of adaptive traits.<br>
+<!-- badges: end --><p>A2TEA is a software workflow facilitating identification of candidate genes for stress adaptation based on comparative genomics and transcriptomics. It combines differential gene expression with gene family expansion as an indicator for the evolution of adaptive traits.<br>
 The goal of the A2TEA.WebApp is to allow exploration, highlighting, and exporting of the results generated by a A2TEA pipeline run. The core of the package is a Shiny application that aims to combine phylogenetic, transcriptomic &amp; functional data and results, in a way that makes it easier to generate insightful observations. As the A2TEA pipeline requires the user to formulate hypotheses - for each of which specific results are produced - the WebApp allows to investigate the genomic adaptations of one or a subset of the investigated species to the analyzed treatment condition. The A2TEA.WebApp aims to combine the benefits of interactivity and reproducibility, e.g. by capturing genes or orthologous groups of interest bookmarked by the user and allowing for easy export of plots, tables and complete subsets of the original input data.</p>
 <p><br></p>
 <div class="section level2">
@@ -157,6 +164,20 @@ If you have sudo rights and installed Singularity via your systems package manag
 <p><br></p>
 </div>
 <div class="section level2">
+<h2 id="ballot_box_with_check-included-test-data">
+<span class="emoji" data-emoji="ballot_box_with_check">☑️</span> Included test data<a class="anchor" aria-label="anchor" href="#ballot_box_with_check-included-test-data"></a>
+</h2>
+<p>The WebApp comes with a test dataset and can be loaded via clicking the “Try a demo A2TEA.RData file” at the top of the interface. This result is also computed by the <a href="https://github.com/tgstoecker/A2TEA.Workflow" class="external-link">A2TEA.Workflow</a> for its usage test. The workflow is set up to run a three species analysis with <em>Hordeum vulgare</em>, <em>Zea mays</em> &amp; <em>Oryza sativa japonica</em> and their reaction patterns to drought stress.<br>
+Peptide fastas are reduced to 2000 proteins; sequencing reads are subsampled to 2M reads.<br>
+The fasta/annotation files and sequencing reads are hosted - here.<br>
+Fasta &amp; annotation files are all either downloaded from ensemblPlants and still possess their original name or in the case of the functional annotations were computed using <a href="https://github.com/groupschoof/AHRD" class="external-link">AHRD</a>.<br>
+NCBI SRA accession IDs of sequencing reads: - Hordeum vulgare: SRR6782243, SRR6782247, SRR6782257, SRR6782249, SRR6782250, SRR6782254 - Zea mays: SRR2043219, SRR2043217, SRR2043190, SRR2043220, SRR2043226, SRR2043227 - Oryza sativa japonica: SRR5134063, SRR5134064, SRR5134065, SRR5134066</p>
+<p>These correspond to the following studies relating to drought stress:<br>
+- Hordeum vulgare: <a href="https://doi.org/10.1186/s12864-019-5634-0" class="external-link uri">https://doi.org/10.1186/s12864-019-5634-0</a><br>
+- Zea mays: <a href="https://doi.org/10.1104/pp.16.01045" class="external-link uri">https://doi.org/10.1104/pp.16.01045</a><br>
+- Oryza sativa japonica: <a href="https://doi.org/10.3389/fpls.2017.00580" class="external-link uri">https://doi.org/10.3389/fpls.2017.00580</a></p>
+</div>
+<div class="section level2">
 <h2 id="development">Development<a class="anchor" aria-label="anchor" href="#development"></a>
 </h2>
 <p>If you encounter a bug, have a usage questions, or want to share ideas and functionality to make this package better, feel free to file an <a href="https://github.com/tgstoecker/A2TEA.WebApp/issues" class="external-link">issue</a>.</p>
@@ -168,7 +189,6 @@ If you have sudo rights and installed Singularity via your systems package manag
 <p>MIT © Tyll Stöcker</p>
 </div>
 </div>
-
   </main><aside class="col-md-3"><div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
@@ -189,8 +209,8 @@ If you have sudo rights and installed Singularity via your systems package manag
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Tyll Stöcker <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-7184-9472" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Carolin Uebermuth-Feldhaus <br><small class="roles"> Author </small> <a href="https://orcid.org/ask%20Caro" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>FLorian Boecker <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-0732-6914" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Carolin Uebermuth-Feldhaus <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-3071-2458" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Florian Boecker <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-0732-6914" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>Heiko Schoof <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-1527-3752" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
@@ -210,7 +230,7 @@ If you have sudo rights and installed Singularity via your systems package manag
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Tyll Stöcker, Carolin Uebermuth-Feldhaus, FLorian Boecker, Heiko Schoof.</p>
+<p>Developed by Tyll Stöcker, Carolin Uebermuth-Feldhaus, Florian Boecker, Heiko Schoof.</p>
 </div>
 
 <div class="pkgdown-footer-right">
