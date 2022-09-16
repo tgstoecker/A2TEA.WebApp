@@ -1,5 +1,5 @@
 
-<!-- <img src="inst/webapp/www/a2tea_hexsticker.png" align="right" width="120"/> -->
+<img src="inst/webapp/www/a2tea_hexsticker.png" align="right" width="120"/>
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # A2TEA.WebApp
