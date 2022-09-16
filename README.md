@@ -10,6 +10,7 @@
 [![](https://img.shields.io/github/last-commit/tgstoecker/A2TEA.WebApp.svg)](https://github.com/tgstoecker/A2TEA.WebApp/commits/master)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![DOI](https://zenodo.org/badge/525064928.svg)](https://zenodo.org/badge/latestdoi/525064928)
 
 <!-- badges: end -->
 
