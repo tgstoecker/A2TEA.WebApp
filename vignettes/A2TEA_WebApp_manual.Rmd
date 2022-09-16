@@ -54,6 +54,13 @@ The main feature of the TEA (trait-specific evolutionary adaptation) tab is a co
 The MSA can be added as a geometric layer to the tree plots or displayed separately with additional options such as a conservation bar (see below).
 To make an informed decision of which OGs are most worthwhile to investigate closer, a table showcasing the total and significantly differentially expressed genes per OG is also provided.
 With this, you enabled to apply several filters, for example to select all expanded OGs that possess at least 1 DEG and more than 4 genes from Hordeum vulgare.
+
+We provide a couple of measures to more quickly glimpse especially interesting OGs from the table itself.
+"norm_sum_expanded_sigDE" und "norm_compared_sigDE" provide the number of DEGs per OG but normalized by the number of species that are either investigated for expansion or the set of species that used for the comparison.
+This table also includes CAFE5 p-values of gene family expansion as well as a over-representation test of significant expression and amount of expansion based on the background distribution of all investigated OGs (smaller values = more expansion and sig. expression in the investigated species).
+Additionally a custom tea-value is provided - an experimental measure that tries to combine both prev.
+measures with Fisher's combined probability test.
+
 The last table on the tab provides insight into the reciprocal BLAST/DIAMOND hits for the currently chosen OG and the additional most similar OGs.
 Notably, this table also provides the identifiers given to the proteins by Orthofinder making it easy to relate insight gained in the web application back to other outputs created by Orthofinder in the A2TEA.Workflow such as the list of putative xenologs.
 
