@@ -2,6 +2,7 @@
 
 #make sure that all libraries needed to run the Shiny App are installed in your current (e.g. dev. environment) environment
 #alternatively, activate conda environment with all A2TEA.WebApp libraries installed + rsconnect connected to shinyapps.io account
+#needed are also BiocManager, rsconnect
 # prior to starting the script
 
 #Step 1 - copying all files shinyapps dir

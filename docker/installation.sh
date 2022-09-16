@@ -16,6 +16,7 @@ function apt_install() {
 }
 
 apt_install \
+    apt-utils \
     libxml2-dev \
     libcairo2-dev \
     libgit2-dev \

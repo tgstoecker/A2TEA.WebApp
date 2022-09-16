@@ -659,7 +659,7 @@ body <- dashboardBody(
                                        sliderInput(inputId = "msa_solo_pos_labels_size", label = "Position labels size", min = 5, max = 150, value = 20, step = 5),
                                        selectInput(inputId = "msa_solo_plot_export_choice", 
                                                    label = "Export format", 
-                                                   choices = c("pdf", "jpeg", "tiff", "png", "bmp", "svg"), 
+                                                   choices = c("pdf", "svg"), 
                                                    selected = "pdf"),
                                        actionButton("msa_solo_button", "Create plot"),
                                        downloadButton(outputId = "msa_solo_plot_download", label = "Download Plot")
