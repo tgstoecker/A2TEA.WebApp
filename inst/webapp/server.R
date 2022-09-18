@@ -35,6 +35,8 @@ library(Rgraphviz)
 library(scales)
 library(methods)
 
+library(A2TEA.WebApp)
+
 #####
 # Server
 #####
@@ -2995,6 +2997,25 @@ server <- function(input, output, session) {
   #3.3 this thus corresponds to the HOG_DE.a2tea table of the subset
   #4 - subset objects with list of all OGs based on pre. decisions          
   
+  #for hosting and docker - have secondary export of classes
+  #hypothesis class not found during subset process...
+  #prob. better way - import statement here?
+  expanded_OG <- setClass("expanded_OG", slots=list(blast_table="tbl_df",
+                                                    add_OG_analysis="list"))
+  
+  hypothesis <- setClass("hypothesis", slots=list(description="character", 
+                                                  number="character",
+                                                  expanded_in ="character", 
+                                                  compared_to="character", 
+                                                  expanded_OGs="list",
+                                                  species_tree="phylo"))
+  
+  add_OG_set <- setClass("add_OG_set",
+                         slots=list(genes="spec_tbl_df",
+                                    msa="AAStringSet", 
+                                    tree="phylo"
+                         )
+  )
   
   #establish # of hypotheses
   num_hypotheses <- reactive({
