@@ -339,7 +339,7 @@ body <- dashboardBody(
                                selectInput(inputId = "species_tree_choice", 
                                            label = "All species or hypothesis subset:", 
                                            choices = c("all species", "hypothesis species"), 
-                                           selected = "all_species"),
+                                           selected = "hypothesis species"),
                                numericInput(inputId = "species_tree_height", "height", value = 600),
                                sliderInput(inputId = "species_tree_hexpand", 
                                            "horizontal axis expansion", 
