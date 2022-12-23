@@ -32,6 +32,9 @@ or orthologous groups of interest bookmarked by the user and allowing
 for easy export of plots, tables and complete subsets of the original
 input data.
 
+**See the published paper!:**
+<https://f1000research.com/articles/11-1137>
+
 <br>
 
 ## :arrow_double_down: Download & Setup
