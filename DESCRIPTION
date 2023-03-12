@@ -1,6 +1,6 @@
 Package: A2TEA.WebApp
 Title: Explore, filter, and visualize gene family expansions and differential expression to identify candidate genes for stress adaptation.
-Version: 1.0.0
+Version: 1.1.0
 Authors@R: 
   c(
     person("Tyll", "Stöcker", , "tyll.stoecker@uni-bonn.de", role = c("aut", "cre"),
