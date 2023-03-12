@@ -35,6 +35,11 @@ input data.
 **See the published paper!:**
 <https://f1000research.com/articles/11-1137>
 
+**Try it out!:**  
+Click on this link - <https://tgstoecker.shinyapps.io/A2TEA-WebApp/> -
+and a new browser tab will open in which a running instance of the
+WebApp will be started.
+
 <br>
 
 ## :arrow_double_down: Download & Setup
