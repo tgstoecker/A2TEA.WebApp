@@ -51,7 +51,7 @@ All of this facilitates a broad overview of the data and also allows you to spot
 ![](images/a2tea_webapp_tea.png){width="800"}
 
 The main feature of the TEA (trait-specific evolutionary adaptation) tab is a comprehensive toolkit for the visualization of maximum likelihood phylogenies of expanded OGs and associated information such as the log2(fold change) of the displayed genes and a multiple sequence alignment (MSA) of the respective protein sequences.  
-Note that trying to show log2FoldChanges for a tree without any expression data present will result in an error message: `missing value where TRUE/FALSE needed`.  
+Note that trying to show log2FoldChanges for a tree without any expression data present will result in an error message.  
 The MSA can be added as a geometric layer to the tree plots or displayed separately with additional options such as a conservation bar (see below).
 To make an informed decision of which OGs are most worthwhile to investigate closer, a table showcasing the total and significantly differentially expressed genes per OG is also provided.
 With this, you enabled to apply several filters, for example to select all expanded OGs that possess at least 1 DEG and more than 4 genes from Hordeum vulgare.

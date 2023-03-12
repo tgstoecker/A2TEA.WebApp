@@ -40,9 +40,9 @@ navbar:
 
 news:
   releases:
-    - text: "Version 1.0.0"
-      href: articles/a2tea_webapp_release-1-0-0.html
-  
+    - text: "Version 1.1.0"
+      href: articles/a2tea_webapp_release-1-1-0.html
+
 home:
   sidebar:
     structure: [links, license, community, citation, authors, dev]
