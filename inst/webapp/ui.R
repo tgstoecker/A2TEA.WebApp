@@ -995,7 +995,7 @@ body <- dashboardBody(
                              selectInput(inputId = "go_deg_choice", 
                                          label = "DEG criterium", 
                                          choices = c("none",
-                                                     "at least # DEGs in any species",
+                                                     "at least # DEGs in any hypothesis species",
                                                      "at least # DEGs in ANY expanded species",
                                                      "at least # DEGs in ALL expanded species"), 
                                          selected = "none"),

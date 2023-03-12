@@ -10,3 +10,4 @@
 ^README.Rmd
 ^docker
 ^pkgdown
+^\.Rproj\.user$
