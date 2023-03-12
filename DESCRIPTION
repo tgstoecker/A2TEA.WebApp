@@ -30,6 +30,7 @@ Imports:
     ggplotify,
     ggstance,
     ggstar,
+    ggtree,
     ggtreeExtra,
     ggvenn,
     gtable,
