@@ -27,8 +27,8 @@
 
 .onLoad <- function(libname, pkgname) {
   # Create link to logo & test data
-  shiny::addResourcePath("A2TEA.WebApp", 
-                         system.file("webapp/www", 
+  shiny::addResourcePath("A2TEA.WebApp",
+                         system.file("webapp/www",
                                      package = "A2TEA.WebApp"))
 }
 
@@ -38,21 +38,21 @@
 #####
 
 #' expanded_OG Class
-#' 
+#'
 #' A class for expanded OG's
-#' 
+#'
 #' @name expanded_OG
 #' @slot blast_table df. gene level; blast hits of OG and all closest OGs
 #' @slot add_OG_analysis list. lists subclass add_OG_set elements
-#' 
+#'
 #' @export expanded_OG
 expanded_OG <- setClass("expanded_OG", slots=list(blast_table="tbl_df",
                                    add_OG_analysis="list"))
 
 #' hypothesis Class
-#' 
+#'
 #' A class for the hypotheses
-#' 
+#'
 #' @name hypothesis
 #' @slot description character. name given to hypothesis
 #' @slot number integer. index number of hypothesis
@@ -60,30 +60,91 @@ expanded_OG <- setClass("expanded_OG", slots=list(blast_table="tbl_df",
 #' @slot compared_to character. species that are used for comparison
 #' @slot expanded_OGs list. lists all expanded OGs for current hypothesis
 #' @slot species_tree phylo. species tree for current hypothesis
-#' 
+#'
 #' @export hypothesis
-hypothesis <- setClass("hypothesis", slots=list(description="character", 
+hypothesis <- setClass("hypothesis", slots=list(description="character",
                                   number="character",
-                                  expanded_in ="character", 
-                                  compared_to="character", 
+                                  expanded_in ="character",
+                                  compared_to="character",
                                   expanded_OGs="list",
                                   species_tree="phylo"))
 
 #' add_OG_set Class
-#' 
+#'
 #' A class for the subelements of the add-OGs analysis
-#' 
+#'
 #' @name add_OG_set
 #' @slot genes spec_tbl_df. DF of genes for current set
 #' @slot msa AAStringSet. MSA for current set
 #' @slot tree phylo. Phylogenetic tree of current set
-#' 
+#'
 #' @export add_OG_set
 add_OG_set <- setClass("add_OG_set",
          slots=list(genes="spec_tbl_df",
-                    msa="AAStringSet", 
+                    msa="AAStringSet",
                     tree="phylo"
          )
+)
+
+#### Server-side datatable shenanigans
+# in order to allow for downloads of all rows of a (filtered) datatable object
+# we need to get creative - https://stackoverflow.com/q/68688737
+#General tab
+deg_df_callback <- JS(
+  "var a = document.createElement('a');",
+  "$(a).addClass('button');",
+  "$(a).addClass('dt-button');",
+  "a.href = document.getElementById('download_deg_full').href;",
+  "a.download = '';",
+  "$(a).attr('target', '_blank');",
+  "$(a).text('Download Full Results');",
+  # https://stackoverflow.com/a/14753236
+  "$(a).attr('style', 'border-radius: 15px; margin-left: 0.47em');",
+  "$('div.deg_dwnld').append(a);",
+  "$('#download_deg_full').hide();"
+)
+
+func_anno_df_callback <- JS(
+  "var a = document.createElement('a');",
+  "$(a).addClass('button');",
+  "$(a).addClass('dt-button');",
+  "a.href = document.getElementById('download_func_anno_full').href;",
+  "a.download = '';",
+  "$(a).attr('target', '_blank');",
+  "$(a).text('Download Full Results');",
+# https://stackoverflow.com/a/14753236
+  "$(a).attr('style', 'border-radius: 15px; margin-left: 0.47em');",
+  "$('div.func_anno_dwnld').append(a);",
+  "$('#download_func_anno_full').hide();"
+)
+
+#Tea analysis tab
+hog_df_callback <- JS(
+  "var a = document.createElement('a');",
+  "$(a).addClass('button');",
+  "$(a).addClass('dt-button');",
+  "a.href = document.getElementById('download_hog_full').href;",
+  "a.download = '';",
+  "$(a).attr('target', '_blank');",
+  "$(a).text('Download Full Results');",
+  # https://stackoverflow.com/a/14753236
+  "$(a).attr('style', 'border-radius: 15px; margin-left: 0.47em');",
+  "$('div.hog_dwnld').append(a);",
+  "$('#download_hog_full').hide();"
+)
+
+blast_df_callback <- JS(
+  "var a = document.createElement('a');",
+  "$(a).addClass('button');",
+  "$(a).addClass('dt-button');",
+  "a.href = document.getElementById('download_blast_full').href;",
+  "a.download = '';",
+  "$(a).attr('target', '_blank');",
+  "$(a).text('Download Full Results');",
+  # https://stackoverflow.com/a/14753236
+  "$(a).attr('style', 'border-radius: 15px; margin-left: 0.47em');",
+  "$('div.blast_dwnld').append(a);",
+  "$('#download_blast_full').hide();"
 )
 
 
@@ -104,7 +165,7 @@ add_OG_set <- setClass("add_OG_set",
 styleColorBar_divergent <- function(data,
                                     color_pos,
                                     color_neg) {
-  
+
   max_val <- max(abs(data))
   JS(
     sprintf(
@@ -114,11 +175,11 @@ styleColorBar_divergent <- function(data,
 
 #AmiGO link
 #' Create NCBI link
-#' 
+#'
 #' @param val Gene of interest
-#' 
+#'
 #' @return Return NCBI link for gene of interest
-#' 
+#'
 #' @export
 createNCBILink <- function(val) {
   sprintf('<a href="https://www.ncbi.nlm.nih.gov/search/all/?term=%s" target="_blank" class="btn btn-primary btn-custom-link">Link</a>',val)
@@ -128,9 +189,9 @@ createNCBILink <- function(val) {
 #'
 #' @param val Gene of interest
 #' @param ensembl_db Which ensembl database to use
-#' 
+#'
 #' @return Return NCBI link for gene of interest
-#' 
+#'
 #' @export
 createEnsemblLink <- function(val, ensembl_db) {
   if (ensembl_db == "Plants") {
@@ -150,11 +211,11 @@ createEnsemblLink <- function(val, ensembl_db) {
 
 #AmiGO link
 #' Create AmiGO link
-#' 
+#'
 #' @param go_term Go term of interest
-#' 
+#'
 #' @return Return AmiGO link for go_term
-#' 
+#'
 #' @export
 createAmiGOLink <- function(go_term) {
   sprintf('<a href="http://amigo.geneontology.org/amigo/term/%s" target="_blank" class="btn btn-primary btn-custom-link">%s</a>', go_term, go_term)
@@ -165,10 +226,10 @@ createAmiGOLink <- function(go_term) {
 #https://stackoverflow.com/questions/42734547/generating-random-strings
 
 #' Create a random token
-#' 
+#'
 #' @param n sample size
 #' @return New random token is created
-#' 
+#'
 #' @export
 random_token_generator <- function(n = 5000) {
   a <- do.call(paste0, replicate(5, sample(LETTERS, n, TRUE), FALSE))
@@ -176,15 +237,15 @@ random_token_generator <- function(n = 5000) {
 }
 
 #' Create a new tmp directory for plots, etc.
-#' 
+#'
 #' @param currwd Current working directory.
 #' @return Creates a new tmp directory that is deleted after exiting session.
-#' 
+#'
 #' @export
 fn_dir <- function(currwd=NULL)
 {
   if(is.null(currwd)) stop("Argument 'currwd' is empty.\n")
-  
+
   #Create new working directory
   newwd <- paste0(currwd, "/",
                   format(Sys.time(), "%Y%m%d%H%M%S"), "_",

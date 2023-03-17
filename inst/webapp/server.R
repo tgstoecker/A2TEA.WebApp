@@ -290,18 +290,19 @@ server <- function(input, output, session) {
   })
 
 
-  # render table displaying functional annotation information
+  # render table displaying differential expression information
   # advanced filtering is enabled
-  output$DEG_table <- DT::renderDT(server = TRUE, {
+  output$DEG_table <- renderDT(server = TRUE, {
     req(res_deg_df())
 
-    DT::datatable(
+    datatable(
       res_deg_df(),
 
       filter = list(position = 'top', clear = FALSE),
+      callback = deg_df_callback,
       extensions = "Buttons",
       options = list(
-        dom = 'lBfrtip',
+        dom = 'lB<"deg_dwnld">frtip',
         lengthMenu = list(c(10, 25, 50, 100, 200), c('10', '25', '50', '100', '200')),
         pageLength = 10,
         buttons = list(
@@ -309,11 +310,17 @@ server <- function(input, output, session) {
           list(extend = "csv",
                fieldSeparator = "\t",
                extension = ".tsv",
-               text = "Download Current Page", filename = "deg_results",
+               text = "Download Current Page", filename = paste0("deg_table_page_", Sys.Date()),
                exportOptions = list(
                  modifier = list(page = "current")
                )
-          )
+          )#, #this would only work with non-server side processing which is slow
+          #list(extend = "csv",
+          #     fieldSeparator = "\t",
+          #     extension = ".tsv",
+          #     text = "Download Full Results", filename = "deg_full_results",
+          #     modifier = list(page = "all")
+          #)
         ),
         columnDefs = list(list(className = 'dt-center', targets = "_all"))
       ),
@@ -341,6 +348,20 @@ server <- function(input, output, session) {
         backgroundPosition = "center"
       )
   })
+  #the hidden button for the deg table
+  #downloading all filtered rows - https://stackoverflow.com/a/41600785
+  output$download_deg_full <- downloadHandler(
+    filename = function() {
+      paste0("deg_table_full_", Sys.Date(), ".tsv")
+    },
+    content = function(file) {
+      write.table(quote = FALSE,
+                  row.names = FALSE,
+                  sep = "\t",
+                  res_deg_df()[input[["DEG_table_rows_all"]], ],file)
+    }
+  )
+
 
   #compute reactive for transformed functional annotation table
   SFA_general <- eventReactive(SFA(),{
@@ -399,10 +420,10 @@ server <- function(input, output, session) {
     datatable(
       SFA_general(),
       filter = list(position = 'top', clear = FALSE),
-
+      callback = func_anno_df_callback,
       extensions = "Buttons",
       options = list(
-        dom = 'lBfrtip',
+        dom = 'lB<"func_anno_dwnld">frtip',
         lengthMenu = list(c(10, 25, 50, 100, 200), c('10', '25', '50', '100', '200')),
         pageLength = 10,
         buttons = list(
@@ -410,11 +431,18 @@ server <- function(input, output, session) {
           list(extend = "csv",
                fieldSeparator = "\t",
                extension = ".tsv",
-               text = "Download Current Page", filename = "functional_annotation",
+               text = "Download Current Page",
+               filename = paste0("functional_annotation_page_", Sys.Date()),
                exportOptions = list(
                  modifier = list(page = "current")
                )
-          )
+          )#, #this would only work with non-server side processing which is slow
+          #list(extend = "csv",
+          #     fieldSeparator = "\t",
+          #     extension = ".tsv",
+          #     text = "Download Full Results", filename = "functional_annotation_full",
+          #     modifier = list(page = "all")
+          #)
         ),
         columnDefs = list(list(className = 'dt-center', targets = "_all"))
       ),
@@ -427,6 +455,19 @@ server <- function(input, output, session) {
       rownames = FALSE
     )
   })
+  #the hidden button for func anno table
+  #downloading all filtered rows - https://stackoverflow.com/a/41600785
+  output$download_func_anno_full <- downloadHandler(
+    filename = function() {
+      paste0("functional_annotation_full_", Sys.Date(), ".tsv")
+    },
+    content = function(file) {
+      write.table(quote = FALSE,
+                row.names = FALSE,
+                sep = "\t",
+                SFA_general()[input[["func_anno_table_rows_all"]], ],file)
+    }
+  )
 
   # creating the species tree plot
   # make renderUI element reactive
@@ -876,10 +917,10 @@ server <- function(input, output, session) {
     datatable(
       hypothesis_HOG_level_list() %>% dplyr::rename(OG = HOG),
       filter = list(position = 'top', clear = FALSE),
-
+      callback = hog_df_callback,
       extensions = "Buttons",
       options = list(
-        dom = 'lBfrtip',
+        dom = 'lB<"hog_dwnld">frtip',
         lengthMenu = list(c(10, 25, 50, 100, 200), c('10', '25', '50', '100', '200')),
         pageLength = 10,
         buttons = list(
@@ -887,7 +928,7 @@ server <- function(input, output, session) {
           list(extend = "csv",
                fieldSeparator = "\t",
                extension = ".tsv",
-               text = "Download Current Page", filename = "og_table",
+               text = "Download Current Page", filename = paste0("og_table_page_", Sys.Date()),
                exportOptions = list(
                  modifier = list(page = "current")
                )
@@ -898,7 +939,20 @@ server <- function(input, output, session) {
       rownames= FALSE
     )
   })
-
+  #the hidden button for func anno table
+  #downloading all filtered rows - https://stackoverflow.com/a/41600785
+  output$download_hog_full <- downloadHandler(
+    filename = function() {
+      paste0("og_table_full_", Sys.Date(), ".tsv")
+    },
+    content = function(file) {
+      hog_df_filt <- hypothesis_HOG_level_list() %>% dplyr::rename(OG = HOG)
+      write.table(quote = FALSE,
+                  row.names = FALSE,
+                  sep = "\t",
+                  hog_df_filt[input[["hypothesis_HOG_level_table_rows_all"]], ],file)
+    }
+  )
 
   ### renderUI elements
   output$add_blast_hit_control <- renderUI({
@@ -1418,10 +1472,10 @@ server <- function(input, output, session) {
   output$ortho_tree_table <- renderDT(server = TRUE, {
     datatable(blast_hits_table(),
               filter = list(position = 'top', clear = FALSE),
-
+              callback = blast_df_callback,
               extensions = "Buttons",
               options = list(
-                dom = 'lBfrtip',
+                dom = 'lB<"blast_dwnld">frtip',
                 lengthMenu = list(c(10, 25, 50, 100, 200), c('10', '25', '50', '100', '200')),
                 pageLength = 10,
                 buttons = list(
@@ -1431,7 +1485,8 @@ server <- function(input, output, session) {
                        extension = ".tsv",
                        text = "Download Current Page", filename = paste0(
                          input$select_HOG_server,
-                         "_blast_hits"),
+                         "_blast_table_page_",
+                         Sys.Date()),
                        exportOptions = list(
                          modifier = list(page = "current")
                        )
@@ -1448,6 +1503,19 @@ server <- function(input, output, session) {
               rownames= FALSE
     )
   })
+  #the hidden button for func anno table
+  #downloading all filtered rows - https://stackoverflow.com/a/41600785
+  output$download_blast_full <- downloadHandler(
+    filename = function() {
+      paste0(input$select_HOG_server, "_blast_table_full_", Sys.Date(), ".tsv")
+    },
+    content = function(file) {
+      write.table(quote = FALSE,
+                  row.names = FALSE,
+                  sep = "\t",
+                  blast_hits_table()[input[["ortho_tree_table_rows_all"]], ],file)
+    }
+  )
 
   # render MSA plot for currently selected set of genes (expanded HOG + further BLAST hits)
 
