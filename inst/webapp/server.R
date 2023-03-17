@@ -1730,7 +1730,8 @@ server <- function(input, output, session) {
           list(extend = "csv",
                fieldSeparator = "\t",
                extension = ".tsv",
-               text = "Download Current Page", filename = "GO_term_enrichment_results",
+               text = "Download Current Page",
+               filename = paste0(input$go_algo_choice, "_algorithm_GO_results_page"),
                exportOptions = list(
                  modifier = list(page = "current")
                )
@@ -1738,7 +1739,8 @@ server <- function(input, output, session) {
           list(extend = "csv",
                fieldSeparator = "\t",
                extension = ".tsv",
-               text = "Download Full Results", filename = "GO_term_enrichment_results",
+               text = "Download Full Results",
+               filename = paste0(input$go_algo_choice, "_algorithm_GO_results_full"),
                exportOptions = list(
                  modifier = list(page = "all")
                )
@@ -1776,6 +1778,7 @@ server <- function(input, output, session) {
       if (input$enrich_plot_choice == "bar") {
 
         p <- ggplot(ggdata(), aes(x=Term, y=Significant, fill = -log10(classicFisher))) +
+          ylab(label = "Number of significant orthogroups") +
           geom_bar(stat = "identity") +
           coord_flip() +
           theme_bw(base_size = 24) +
@@ -1797,6 +1800,10 @@ server <- function(input, output, session) {
         p <- ggplot(ggdata(),
                     aes(x = Term, y = -log10(classicFisher), size = Annotated, fill = -log10(classicFisher))) +
           expand_limits(y = 1) +
+          geom_hline(yintercept = c(-log10(0.05), -log10(0.01), -log10(0.001)),
+                     linetype = c("dotted", "longdash", "solid"),
+                     colour = c("black", "black", "black"),
+                     size = c(0.5, 1.5, 3)) +
           geom_point(shape = 21) +
           scale_size(range = c(2.5,12.5)) +
           scale_fill_continuous(low = "#428bca", high = "#F39C12") +
@@ -1804,10 +1811,6 @@ server <- function(input, output, session) {
           labs(
             subtitle = 'Top n terms ordered by Fisher p-value',
             caption = 'Cut-off lines drawn at equivalents of p=0.05, p=0.01, p=0.001') +
-          geom_hline(yintercept = c(-log10(0.05), -log10(0.01), -log10(0.001)),
-                     linetype = c("dotted", "longdash", "solid"),
-                     colour = c("black", "black", "black"),
-                     size = c(0.5, 1.5, 3)) +
           theme_bw(base_size = 24) +
           theme(
             legend.position = 'right',
