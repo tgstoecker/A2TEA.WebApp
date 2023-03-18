@@ -24,6 +24,7 @@
 #' @import shinycssloaders
 #' @import svglite
 #' @import topGO
+#' @import htmlwidgets
 
 .onLoad <- function(libname, pkgname) {
   # Create link to logo & test data

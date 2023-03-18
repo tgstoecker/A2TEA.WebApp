@@ -44,6 +44,68 @@ options(spinner.type=1)
 options(spinner.color='#428bca')
 options(spinner.size=2)
 
+#### Server-side datatable shenanigans
+# in order to allow for downloads of all rows of a (filtered) datatable object
+# we need to get creative - https://stackoverflow.com/q/68688737
+#General tab
+deg_df_callback <- JS(
+  "var a = document.createElement('a');",
+  "$(a).addClass('button');",
+  "$(a).addClass('dt-button');",
+  "a.href = document.getElementById('download_deg_full').href;",
+  "a.download = '';",
+  "$(a).attr('target', '_blank');",
+  "$(a).text('Download Full Results');",
+  # https://stackoverflow.com/a/14753236
+  "$(a).attr('style', 'border-radius: 15px; margin-left: 0.47em');",
+  "$('div.deg_dwnld').append(a);",
+  "$('#download_deg_full').hide();"
+)
+
+func_anno_df_callback <- JS(
+  "var a = document.createElement('a');",
+  "$(a).addClass('button');",
+  "$(a).addClass('dt-button');",
+  "a.href = document.getElementById('download_func_anno_full').href;",
+  "a.download = '';",
+  "$(a).attr('target', '_blank');",
+  "$(a).text('Download Full Results');",
+  # https://stackoverflow.com/a/14753236
+  "$(a).attr('style', 'border-radius: 15px; margin-left: 0.47em');",
+  "$('div.func_anno_dwnld').append(a);",
+  "$('#download_func_anno_full').hide();"
+)
+
+#Tea analysis tab
+hog_df_callback <- JS(
+  "var a = document.createElement('a');",
+  "$(a).addClass('button');",
+  "$(a).addClass('dt-button');",
+  "a.href = document.getElementById('download_hog_full').href;",
+  "a.download = '';",
+  "$(a).attr('target', '_blank');",
+  "$(a).text('Download Full Results');",
+  # https://stackoverflow.com/a/14753236
+  "$(a).attr('style', 'border-radius: 15px; margin-left: 0.47em');",
+  "$('div.hog_dwnld').append(a);",
+  "$('#download_hog_full').hide();"
+)
+
+blast_df_callback <- JS(
+  "var a = document.createElement('a');",
+  "$(a).addClass('button');",
+  "$(a).addClass('dt-button');",
+  "a.href = document.getElementById('download_blast_full').href;",
+  "a.download = '';",
+  "$(a).attr('target', '_blank');",
+  "$(a).text('Download Full Results');",
+  # https://stackoverflow.com/a/14753236
+  "$(a).attr('style', 'border-radius: 15px; margin-left: 0.47em');",
+  "$('div.blast_dwnld').append(a);",
+  "$('#download_blast_full').hide();"
+)
+
+
 header <- shinydashboardPlus::dashboardHeader(
   #title = "A2TEA",
   ##adding logo to App
