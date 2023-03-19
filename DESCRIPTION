@@ -1,6 +1,6 @@
 Package: A2TEA.WebApp
 Title: Explore, filter, and visualize gene family expansions and differential expression to identify candidate genes for stress adaptation.
-Version: 1.1.0
+Version: 1.1.5
 Authors@R: 
   c(
     person("Tyll", "Stöcker", , "tyll.stoecker@uni-bonn.de", role = c("aut", "cre"),
@@ -18,7 +18,7 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
 Depends:
-    R (>= 4.1.0)
+    R (>= 4.2.3)
 biocViews:
 Imports: 
     Biostrings,

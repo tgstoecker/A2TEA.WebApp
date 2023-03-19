@@ -1,4 +1,4 @@
-FROM rocker/rstudio:4.1.3
+FROM rocker/rstudio:4.2.3
 
 RUN mkdir -p /scripts
 COPY installation.sh /scripts/installation.sh
