@@ -40,8 +40,8 @@ navbar:
 
 news:
   releases:
-    - text: "Version 1.1.0"
-      href: articles/a2tea_webapp_release-1-1-0.html
+    - text: "Version 1.1.5"
+      href: articles/a2tea_webapp_release-1-1-5.html
 
 home:
   sidebar:

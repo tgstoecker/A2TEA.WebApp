@@ -16,7 +16,7 @@ Description: Shiny App facilitating identification of candidate genes for stress
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Depends:
     R (>= 4.2.3)
 biocViews:

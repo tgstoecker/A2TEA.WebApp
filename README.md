@@ -30,15 +30,14 @@ analyzed treatment condition. The A2TEA.WebApp aims to combine the
 benefits of interactivity and reproducibility, e.g. by capturing genes
 or orthologous groups of interest bookmarked by the user and allowing
 for easy export of plots, tables and complete subsets of the original
-input data.
+input data. The newest releases of the workflow and WebApp now allow for
+final results without the need for transcriptomic data for all species.
+This way, valuable phylogenetic information from species without
+available expression information for the conditions under investigation
+can be included.
 
 **See the published paper!:**
 <https://f1000research.com/articles/11-1137>
-
-**Try it out!:**  
-Click on this link - <https://tgstoecker.shinyapps.io/A2TEA-WebApp/> -
-and a new browser tab will open in which a running instance of the
-WebApp will be started.
 
 <br>
 
