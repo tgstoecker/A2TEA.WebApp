@@ -2231,6 +2231,43 @@ server <- function(input, output, session) {
       dplyr::select(HOG, all_of(ends_with("_total")), any_of(exp_species_sigDE)) %>%
       filter_at(vars(c(ends_with("_sigDE"))), all_vars(. >= n_deg))
 
+    ### conserved OGs based on ALL species sets but hypothesis filter - Caro's wish 2023
+    #simply take hypothesis sets and reduce by conserved OGs (which are from all species in A2TEA run)
+
+    #conserved OGs of all species + hypothesis EXPANSION
+    hyper_ALL_conserved_OGs_hypothesis_expansion <-
+      hyper_conserved_OGs_hypothesis_expansion %>%
+      filter(HOG %in% hyper_conserved_OGs$HOG)
+    ##conserved OGs of all species  + hypothesis N DEGs from ANY species
+    #at least # DEGs in any species of the hypothesis
+    hyper_ALL_conserved_OGs_hypothesis_N_DEGs_ANY_species <-
+      hyper_conserved_OGs_hypothesis_N_DEGs_ANY_species %>%
+      filter(HOG %in% hyper_conserved_OGs$HOG)
+    #at least # DEGs in ANY expanded species
+    hyper_ALL_conserved_OGs_hypothesis_N_DEGs_ANY_EXPANDED_species <-
+      hyper_conserved_OGs_hypothesis_N_DEGs_ANY_EXPANDED_species %>%
+      filter(HOG %in% hyper_conserved_OGs$HOG)
+    #at least # DEGs in ALL expanded species
+    hyper_ALL_conserved_OGs_hypothesis_N_DEGs_ALL_EXPANDED_species <-
+      hyper_conserved_OGs_hypothesis_N_DEGs_ALL_EXPANDED_species %>%
+      filter(HOG %in% hyper_conserved_OGs$HOG)
+    ##conserved OGs of all species  + hypothesis EXPANSION + hypothesis DEGs
+    #at least # DEGs in any species
+    hyper_ALL_conserved_OGs_hypothesis_expansion_N_DEGs_ANY_species <-
+      hyper_conserved_OGs_hypothesis_expansion_N_DEGs_ANY_species %>%
+      filter(HOG %in% hyper_conserved_OGs$HOG)
+    #at_least_N_all
+    hyper_ALL_conserved_OGs_hypothesis_expansion_N_DEGs_ALL_species <-
+      hyper_conserved_OGs_hypothesis_expansion_N_DEGs_ALL_species %>%
+      filter(HOG %in% hyper_conserved_OGs$HOG)
+    #at least # DEGs in ANY expanded species
+    hyper_ALL_conserved_OGs_hypothesis_expansion_N_DEGs_ANY_EXPANDED_species <-
+      hyper_conserved_OGs_hypothesis_expansion_N_DEGs_ANY_EXPANDED_species %>%
+      filter(HOG %in% hyper_conserved_OGs$HOG)
+    #at least # DEGs in ALL expanded species
+    hyper_ALL_conserved_OGs_hypothesis_expansion_N_DEGs_ALL_EXPANDED_species <-
+      hyper_conserved_OGs_hypothesis_expansion_N_DEGs_ALL_EXPANDED_species %>%
+      filter(HOG %in% hyper_conserved_OGs$HOG)
 
     set_fun_nrows <- list(
       #general sets
@@ -2239,6 +2276,15 @@ server <- function(input, output, session) {
       "conserved OGs" = nrow(hyper_conserved_OGs),
       "conserved OGs; # DEGs from ANY species" = nrow(hyper_conserved_OGs_N_DEGs_ANY_species),
       "conserved OGs; # DEGs from ALL species" = nrow(hyper_conserved_OGs_N_DEGs_ALL_species),
+      #conserved OGs based on ALL species sets but hypothesis filter
+      "conserved OGs; hypothesis; EXPANDED" = nrow(hyper_ALL_conserved_OGs_hypothesis_expansion),
+      "conserved OGs; hypothesis; # DEGs from ANY species" = nrow(hyper_ALL_conserved_OGs_hypothesis_N_DEGs_ANY_species),
+      "conserved OGs; hypothesis; # DEGs from ANY EXPANDED species" = nrow(hyper_ALL_conserved_OGs_hypothesis_N_DEGs_ANY_EXPANDED_species),
+      "conserved OGs; hypothesis; # DEGs from ALL EXPANDED species" = nrow(hyper_ALL_conserved_OGs_hypothesis_N_DEGs_ALL_EXPANDED_species),
+      "conserved OGs; hypothesis; EXPANDED; # DEGs from ANY species" = nrow(hyper_ALL_conserved_OGs_hypothesis_expansion_N_DEGs_ANY_species),
+      "conserved OGs; hypothesis; EXPANDED; # DEGs from ALL species" = nrow(hyper_ALL_conserved_OGs_hypothesis_expansion_N_DEGs_ALL_species),
+      "conserved OGs; hypothesis; EXPANDED; # DEGs from ANY EXPANDED species" = nrow(hyper_ALL_conserved_OGs_hypothesis_expansion_N_DEGs_ANY_EXPANDED_species),
+      "conserved OGs; hypothesis; EXPANDED; # DEGs from ALL EXPANDED species" = nrow(hyper_ALL_conserved_OGs_hypothesis_expansion_N_DEGs_ALL_EXPANDED_species),
       #hypothesis specific but not strictly conserved
       "hypothesis; all OGs; EXPANDED" = nrow(hyper_all_OGs_hypothesis_expansion),
       "hypothesis; all OGs; # DEGs from ANY species" = nrow(hyper_all_OGs_hypothesis_N_DEGs_ANY_species),
@@ -2265,6 +2311,15 @@ server <- function(input, output, session) {
       "conserved OGs" = hyper_conserved_OGs,
       "conserved OGs; # DEGs from ANY species" = hyper_conserved_OGs_N_DEGs_ANY_species,
       "conserved OGs; # DEGs from ALL species" = hyper_conserved_OGs_N_DEGs_ALL_species,
+      #conserved OGs based on ALL species sets but hypothesis filter
+      "conserved OGs; hypothesis; EXPANDED" = nrow(hyper_ALL_conserved_OGs_hypothesis_expansion),
+      "conserved OGs; hypothesis; # DEGs from ANY species" = nrow(hyper_ALL_conserved_OGs_hypothesis_N_DEGs_ANY_species),
+      "conserved OGs; hypothesis; # DEGs from ANY EXPANDED species" = nrow(hyper_ALL_conserved_OGs_hypothesis_N_DEGs_ANY_EXPANDED_species),
+      "conserved OGs; hypothesis; # DEGs from ALL EXPANDED species" = nrow(hyper_ALL_conserved_OGs_hypothesis_N_DEGs_ALL_EXPANDED_species),
+      "conserved OGs; hypothesis; EXPANDED; # DEGs from ANY species" = nrow(hyper_ALL_conserved_OGs_hypothesis_expansion_N_DEGs_ANY_species),
+      "conserved OGs; hypothesis; EXPANDED; # DEGs from ALL species" = nrow(hyper_ALL_conserved_OGs_hypothesis_expansion_N_DEGs_ALL_species),
+      "conserved OGs; hypothesis; EXPANDED; # DEGs from ANY EXPANDED species" = nrow(hyper_ALL_conserved_OGs_hypothesis_expansion_N_DEGs_ANY_EXPANDED_species),
+      "conserved OGs; hypothesis; EXPANDED; # DEGs from ALL EXPANDED species" = nrow(hyper_ALL_conserved_OGs_hypothesis_expansion_N_DEGs_ALL_EXPANDED_species),
       #hypothesis specific but not strictly conserved
       "hypothesis; all OGs; EXPANDED" = hyper_all_OGs_hypothesis_expansion,
       "hypothesis; all OGs; # DEGs from ANY species" = hyper_all_OGs_hypothesis_N_DEGs_ANY_species,
