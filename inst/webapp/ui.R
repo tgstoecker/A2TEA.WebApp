@@ -1006,6 +1006,15 @@ body <- dashboardBody(
                                                               "conserved OGs",
                                                               "conserved OGs; # DEGs from ANY species",
                                                               "conserved OGs; # DEGs from ALL species",
+                                                              # conserved OGs based on ALL species sets but hypothesis filter
+                                                              "conserved OGs; hypothesis; EXPANDED",
+                                                              "conserved OGs; hypothesis; # DEGs from ANY species",
+                                                              "conserved OGs; hypothesis; # DEGs from ANY EXPANDED species",
+                                                              "conserved OGs; hypothesis; # DEGs from ALL EXPANDED species",
+                                                              "conserved OGs; hypothesis; EXPANDED; # DEGs from ANY species",
+                                                              "conserved OGs; hypothesis; EXPANDED; # DEGs from ALL species",
+                                                              "conserved OGs; hypothesis; EXPANDED; # DEGs from ANY EXPANDED species",
+                                                              "conserved OGs; hypothesis; EXPANDED; # DEGs from ALL EXPANDED species",
                                                               #hypothesis specific but not strictly conserved
                                                               "hypothesis; all OGs; EXPANDED",
                                                               "hypothesis; all OGs; # DEGs from ANY species",
@@ -1032,6 +1041,15 @@ body <- dashboardBody(
                                                               "conserved OGs",
                                                               "conserved OGs; # DEGs from ANY species",
                                                               "conserved OGs; # DEGs from ALL species",
+                                                              # conserved OGs based on ALL species sets but hypothesis filter
+                                                              "conserved OGs; hypothesis; EXPANDED",
+                                                              "conserved OGs; hypothesis; # DEGs from ANY species",
+                                                              "conserved OGs; hypothesis; # DEGs from ANY EXPANDED species",
+                                                              "conserved OGs; hypothesis; # DEGs from ALL EXPANDED species",
+                                                              "conserved OGs; hypothesis; EXPANDED; # DEGs from ANY species",
+                                                              "conserved OGs; hypothesis; EXPANDED; # DEGs from ALL species",
+                                                              "conserved OGs; hypothesis; EXPANDED; # DEGs from ANY EXPANDED species",
+                                                              "conserved OGs; hypothesis; EXPANDED; # DEGs from ALL EXPANDED species",
                                                               #hypothesis specific but not strictly conserved
                                                               "hypothesis; all OGs; EXPANDED",
                                                               "hypothesis; all OGs; # DEGs from ANY species",
