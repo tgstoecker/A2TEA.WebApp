@@ -47,12 +47,12 @@ Imports:
     shinyjs,
     stringr,
     svglite,
+    treeio,
     topGO,
     UpSetR,
     XVector
 Remotes:
     rstudio/fontawesome,
-    YuLab-SMU/ggtree,
     YuLab-SMU/ggmsa
 URL: https://tgstoecker.github.io/A2TEA.WebApp/
 Suggests: 
