@@ -208,7 +208,76 @@ and a corresponding circular set plot that visualizes the chosen sets.
 Also provided is a tool for comparing the size distributions of the OGs
 with which group size effects can be checked; e.g. “Do we see
 differences in the number of DEGs in OGs of a certain size range between
-the set of interest and the background set?”.</p>
+the set of interest and the background set?”.<br>
+We have included several sets that allow for interesting insights to be
+gleamed. The names of the sets are verbose and always reflect the order
+of filtering operations. It is important to think about the sets of
+interest before diving into analysis (correct subsets, etc.) since the
+hypergeometric test otherwise does not provide useful insights. One
+common thought to consider, is that, when your are interested in
+conserved OGs of the set of all species in the A2TEA run, that this is
+in fact a stricter criterium then only looking for conservation of a
+subset of species as part of a hypothesis set, since conservation in
+more species is less likely.<br>
+The sets can be roughly grouped into 4 groups and are described in more
+detail in the following:<br><u>Group 1 - Basic Sets; broad filters on complete set of all species
+used in the A2TEA run; e.g., OG conservation and/or # of DEGs:</u></p>
+<ul>
+<li>“all OGs”</li>
+<li>“all OGs with # DEGs from ANY species”</li>
+<li>“conserved OGs”</li>
+<li>“conserved OGs; # DEGs from ANY species”</li>
+<li>“conserved OGs; # DEGs from ALL species”</li>
+</ul>
+<p><u>Group 2 - Sets based on checking OG conservation in all species of
+the A2TEA run and <strong>then</strong> applying hypothesis level
+filters; e.g., # of DEGs or expansion. Note - once the hypothesis level
+filter is applied, subsequent steps (e.g., # DEGs) refer to only species
+in this hypothesis:</u></p>
+<ul>
+<li>“conserved OGs; hypothesis; EXPANDED”</li>
+<li>“conserved OGs; hypothesis; # DEGs from ANY species”</li>
+<li>“conserved OGs; hypothesis; # DEGs from ANY EXPANDED species”</li>
+<li>“conserved OGs; hypothesis; # DEGs from ALL EXPANDED species”</li>
+<li>“conserved OGs; hypothesis; EXPANDED; # DEGs from ANY species”</li>
+<li>“conserved OGs; hypothesis; EXPANDED; # DEGs from ALL species”</li>
+<li>“conserved OGs; hypothesis; EXPANDED; # DEGs from ANY EXPANDED
+species”</li>
+<li>“conserved OGs; hypothesis; EXPANDED; # DEGs from ALL EXPANDED
+species”</li>
+</ul>
+<p><u>Group 3 - Sets that filter for hypothesis level species and do not
+specify any conservation of OGs (note that requiring DEGs from all
+species is in the end also a filter of conservation):</u></p>
+<ul>
+<li>“hypothesis; all OGs; EXPANDED”</li>
+<li>“hypothesis; all OGs; # DEGs from ANY species”</li>
+<li>“hypothesis; all OGs; # DEGs from ANY EXPANDED species”</li>
+<li>“hypothesis; all OGs; # DEGs from ALL EXPANDED species”</li>
+<li>“hypothesis; all OGs; EXPANDED; # DEGs from ANY EXPANDED
+species”</li>
+<li>“hypothesis; all OGs; EXPANDED; # DEGs from ALL EXPANDED
+species”</li>
+</ul>
+<p><u>Group 4 - Sets that perform the filters (conservation, hypothesis)
+in a reverse order compared to Group 2. Here, first the analyzed species
+are reduced to those included in the hypothesis and
+<strong>then</strong> conservation and additional filters are applied.
+In terms of the conservation this is ultimately less strict than
+requiring conservation of OGs from all species in the A2TEA run as
+performed in Group 2:</u></p>
+<ul>
+<li>“hypothesis; conserved OGs; EXPANDED”</li>
+<li>“hypothesis; conserved OGs; # DEGs from ANY species”</li>
+<li>“hypothesis; conserved OGs; # DEGs from ANY EXPANDED species”</li>
+<li>“hypothesis; conserved OGs; # DEGs from ALL EXPANDED species”</li>
+<li>“hypothesis; conserved OGs; EXPANDED; # DEGs from ANY species”</li>
+<li>“hypothesis; conserved OGs; EXPANDED; # DEGs from ALL species”</li>
+<li>“hypothesis; conserved OGs; EXPANDED; # DEGs from ANY EXPANDED
+species”</li>
+<li>“hypothesis; conserved OGs; EXPANDED; # DEGs from ALL EXPANDED
+species”</li>
+</ul>
 </div>
 <div class="section level2">
 <h2 id="performing-functional-enrichment-tests">Performing functional enrichment tests<a class="anchor" aria-label="anchor" href="#performing-functional-enrichment-tests"></a>
@@ -217,19 +286,29 @@ the set of interest and the background set?”.</p>
 <p>The last analysis tab provides options for performing GO term
 over-representation analysis based on the topGO R package. Functions
 that occur more often than expected can be identified by setting several
-parameters that specify the set of OGs you want to analyze. With our
-test data, you could for instance be interested in enriched molecular
-functions of OGs that are expanded in Hordeum vulgare and also possess
-at least 2 DEGs of Hordeum vulgare. Once computed, a table is displayed
-that shows the top significantly enriched GO terms and also contains
-dynamically created links for these to AmiGO2. A second table contains
-information on the corresponding OGs and genes so that you are able to
-follow up on a particular enriched GO term and inspect the underlying
-data. We also provide two visualizations that summarize the results. The
-first is a GO enrichment dotplot (Figure 4D) showcasing the overall
-results in a straightforward way and the second is a GO subgraph of
-selected top N enriched GO terms. With the latter, we provide you with
-an insightful way of investigating how the significant GO terms are
+parameters that specify the set of OGs you want to analyze.</p>
+<p>The background “universe” is the non-redundant superset set of GO
+terms of all genes of all species in OGs <u>conserved in all species of
+the A2TEA run</u> (singletons are currently not included). Whatever is
+compared to the universe in the analysis, is always a <u>subset</u> of
+it. Basically, the choice of hypothesis, expansion filter (yes/no) and
+DEG criterium (e.g., “at least N # of DEGs in any hypothesis species”)
+reduce the universe set to a target subset which we want to check for
+significant enrichment of GO terms. The ontology of interest (Biological
+Process (BP), Molecular Function (MF) or Cellular component (CC)) and
+further options can also be set.</p>
+<p>With our test data, you could for instance be interested in enriched
+molecular functions of OGs that are expanded in Hordeum vulgare and also
+possess at least 2 DEGs of Hordeum vulgare. Once computed, a table is
+displayed that shows the top significantly enriched GO terms and also
+contains dynamically created links for these to AmiGO2. A second table
+contains information on the corresponding OGs and genes so that you are
+able to follow up on a particular enriched GO term and inspect the
+underlying data. We also provide two visualizations that summarize the
+results. The first is a GO enrichment dotplot (Figure 4D) showcasing the
+overall results in a straightforward way and the second is a GO subgraph
+of selected top N enriched GO terms. With the latter, we provide you
+with an insightful way of investigating how the significant GO terms are
 distributed over the GO graph.</p>
 <p><img src="images/placeholder_go_graph.png" width="800"></p>
 </div>
