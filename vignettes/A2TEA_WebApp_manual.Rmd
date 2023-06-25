@@ -50,8 +50,8 @@ All of this facilitates a broad overview of the data and also allows you to spot
 
 ![](images/a2tea_webapp_tea.png){width="800"}
 
-The main feature of the TEA (trait-specific evolutionary adaptation) tab is a comprehensive toolkit for the visualization of maximum likelihood phylogenies of expanded OGs and associated information such as the log2(fold change) of the displayed genes and a multiple sequence alignment (MSA) of the respective protein sequences.  
-Note that trying to show log2FoldChanges for a tree without any expression data present will result in an error message.  
+The main feature of the TEA (trait-specific evolutionary adaptation) tab is a comprehensive toolkit for the visualization of maximum likelihood phylogenies of expanded OGs and associated information such as the log2(fold change) of the displayed genes and a multiple sequence alignment (MSA) of the respective protein sequences.\
+Note that trying to show log2FoldChanges for a tree without any expression data present will result in an error message.\
 The MSA can be added as a geometric layer to the tree plots or displayed separately with additional options such as a conservation bar (see below).
 To make an informed decision of which OGs are most worthwhile to investigate closer, a table showcasing the total and significantly differentially expressed genes per OG is also provided.
 With this, you enabled to apply several filters, for example to select all expanded OGs that possess at least 1 DEG and more than 4 genes from Hordeum vulgare.
@@ -74,7 +74,50 @@ Notably, this table also provides the identifiers given to the proteins by Ortho
 To describe adaptive processes at a larger scale we also integrated functionality to visualize distributions of user-defined OG sets and test for their over-representation; e.g. "What is the frequency of OGs that show expansion and at least 1 DEG in Hordeum vulgare in all conserved OGs?" and "Is this set over-represented within the background distribution of conserved OGs with at least 1 DEG from any species?".
 We took care to make answering such questions very accessible by providing you with text-based choices of which sets to plot or compare.
 Currently integrated are an enrichment analysis suite allowing for Fisher-Tests and a corresponding circular set plot that visualizes the chosen sets.
-Also provided is a tool for comparing the size distributions of the OGs with which group size effects can be checked; e.g. "Do we see differences in the number of DEGs in OGs of a certain size range between the set of interest and the background set?".
+Also provided is a tool for comparing the size distributions of the OGs with which group size effects can be checked; e.g. "Do we see differences in the number of DEGs in OGs of a certain size range between the set of interest and the background set?".\
+We have included several sets that allow for interesting insights to be gleamed.
+The names of the sets are verbose and always reflect the order of filtering operations.
+It is important to think about the sets of interest before diving into analysis (correct subsets, etc.) since the hypergeometric test otherwise does not provide useful insights.
+One common thought to consider, is that, when your are interested in conserved OGs of the set of all species in the A2TEA run, that this is in fact a stricter criterium then only looking for conservation of a subset of species as part of a hypothesis set, since conservation in more species is less likely.\
+The sets can be roughly grouped into 4 groups and are described in more detail in the following:\
+[Group 1 - Basic Sets; broad filters on complete set of all species used in the A2TEA run; e.g., OG conservation and/or \# of DEGs:]{.underline}
+
+-   "all OGs"
+-   "all OGs with \# DEGs from ANY species"
+-   "conserved OGs"
+-   "conserved OGs; \# DEGs from ANY species"
+-   "conserved OGs; \# DEGs from ALL species"
+
+[Group 2 - Sets based on checking OG conservation in all species of the A2TEA run and **then** applying hypothesis level filters; e.g., \# of DEGs or expansion. Note - once the hypothesis level filter is applied, subsequent steps (e.g., \# DEGs) refer to only species in this hypothesis:]{.underline}
+
+-   "conserved OGs; hypothesis; EXPANDED"
+-   "conserved OGs; hypothesis; \# DEGs from ANY species"
+-   "conserved OGs; hypothesis; \# DEGs from ANY EXPANDED species"
+-   "conserved OGs; hypothesis; \# DEGs from ALL EXPANDED species"
+-   "conserved OGs; hypothesis; EXPANDED; \# DEGs from ANY species"
+-   "conserved OGs; hypothesis; EXPANDED; \# DEGs from ALL species"
+-   "conserved OGs; hypothesis; EXPANDED; \# DEGs from ANY EXPANDED species"
+-   "conserved OGs; hypothesis; EXPANDED; \# DEGs from ALL EXPANDED species"
+
+[Group 3 - Sets that filter for hypothesis level species and do not specify any conservation of OGs (note that requiring DEGs from all species is in the end also a filter of conservation):]{.underline}
+
+-   "hypothesis; all OGs; EXPANDED"
+-   "hypothesis; all OGs; \# DEGs from ANY species"
+-   "hypothesis; all OGs; \# DEGs from ANY EXPANDED species"
+-   "hypothesis; all OGs; \# DEGs from ALL EXPANDED species"
+-   "hypothesis; all OGs; EXPANDED; \# DEGs from ANY EXPANDED species"
+-   "hypothesis; all OGs; EXPANDED; \# DEGs from ALL EXPANDED species"
+
+[Group 4 - Sets that perform the filters (conservation, hypothesis) in a reverse order compared to Group 2. Here, first the analyzed species are reduced to those included in the hypothesis and **then** conservation and additional filters are applied. In terms of the conservation this is ultimately less strict than requiring conservation of OGs from all species in the A2TEA run as performed in Group 2:]{.underline}
+
+-   "hypothesis; conserved OGs; EXPANDED"
+-   "hypothesis; conserved OGs; \# DEGs from ANY species"
+-   "hypothesis; conserved OGs; \# DEGs from ANY EXPANDED species"
+-   "hypothesis; conserved OGs; \# DEGs from ALL EXPANDED species"
+-   "hypothesis; conserved OGs; EXPANDED; \# DEGs from ANY species"
+-   "hypothesis; conserved OGs; EXPANDED; \# DEGs from ALL species"
+-   "hypothesis; conserved OGs; EXPANDED; \# DEGs from ANY EXPANDED species"
+-   "hypothesis; conserved OGs; EXPANDED; \# DEGs from ALL EXPANDED species"
 
 ## Performing functional enrichment tests
 
@@ -82,6 +125,12 @@ Also provided is a tool for comparing the size distributions of the OGs with whi
 
 The last analysis tab provides options for performing GO term over-representation analysis based on the topGO R package.
 Functions that occur more often than expected can be identified by setting several parameters that specify the set of OGs you want to analyze.
+
+The background "universe" is the non-redundant superset set of GO terms of all genes of all species in OGs [conserved in all species of the A2TEA run]{.underline} (singletons are currently not included).
+Whatever is compared to the universe in the analysis, is always a [subset]{.underline} of it.
+Basically, the choice of hypothesis, expansion filter (yes/no) and DEG criterium (e.g., "at least N \# of DEGs in any hypothesis species") reduce the universe set to a target subset which we want to check for significant enrichment of GO terms.
+The ontology of interest (Biological Process (BP), Molecular Function (MF) or Cellular component (CC)) and further options can also be set.
+
 With our test data, you could for instance be interested in enriched molecular functions of OGs that are expanded in Hordeum vulgare and also possess at least 2 DEGs of Hordeum vulgare.
 Once computed, a table is displayed that shows the top significantly enriched GO terms and also contains dynamically created links for these to AmiGO2.
 A second table contains information on the corresponding OGs and genes so that you are able to follow up on a particular enriched GO term and inspect the underlying data.
