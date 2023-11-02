@@ -14,6 +14,8 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 
 <!-- badges: end -->
 
+## **02.11.2023: The A2TEA.WebApp is is no longer maintained in this repository - all future development will happen in [https://github.com/groupschoof/A2TEA.WebApp](https://github.com/groupschoof/A2TEA.WebApp)**
+
 A2TEA is a software workflow facilitating identification of candidate
 genes for stress adaptation based on comparative genomics and
 transcriptomics. It combines differential gene expression with gene
